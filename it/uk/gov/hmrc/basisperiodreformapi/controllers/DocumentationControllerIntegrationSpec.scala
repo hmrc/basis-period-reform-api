@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.basisperiodreformapi
+package uk.gov.hmrc.basisperiodreformapi.controllers
 
 import org.scalatest.concurrent.{IntegrationPatience, ScalaFutures}
 import org.scalatest.matchers.should.Matchers
@@ -24,7 +24,7 @@ import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.ws.WSClient
 
-class HealthEndpointIntegrationSpec
+class DocumentationControllerIntegrationSpec
     extends AnyWordSpec
     with Matchers
     with ScalaFutures
@@ -39,11 +39,23 @@ class HealthEndpointIntegrationSpec
       .configure("metrics.enabled" -> false)
       .build()
 
-  "service health endpoint" should {
+  "definition endpoint" should {
     "respond with 200 status" in {
       val response =
         wsClient
-          .url(s"$baseUrl/ping/ping")
+          .url(s"$baseUrl/api/definition")
+          .get()
+          .futureValue
+
+      response.status shouldBe 200
+    }
+  }
+
+  "specification endpoint" should {
+    "respond with 200 status" in {
+      val response =
+        wsClient
+          .url(s"$baseUrl/api/conf/1.0/application.yaml")
           .get()
           .futureValue
 

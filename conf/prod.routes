@@ -1,3 +1,4 @@
 # Add all the application routes to the app.routes file
-->         /basis-period-reform-api              app.Routes
-->         /                          health.Routes
+->         /              app.Routes
+->         /              definition.Routes
+->         /              health.Routes
