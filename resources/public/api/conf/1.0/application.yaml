@@ -1,0 +1,56 @@
+openapi: 3.0.3
+
+info:
+  title: Basis Period Reform API
+  version: '1.0'
+  description: |
+    # Overview
+    This API allows for the support of the workflow around Basis Period Reform
+
+servers:
+  - url: https://test-api.service.hmrc.gov.uk/organisations/basis-period-reform
+    description: Sandbox
+  - url: https://api.service.hmrc.gov.uk/organisations/basis-period-reform
+    description: Production
+
+components:
+  parameters:
+    acceptHeader:
+      name: Accept
+      in: header
+      schema:
+        type: string
+        enum: [
+          "application/vnd.hmrc.1.0+json"
+        ]
+      required: true
+  schemas:
+    HelloResponse:
+      title: Hello Response
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: Hello
+
+paths:
+  /hello:
+    get:
+      summary: Hello
+      description: >
+        An endpoint that says hello
+      parameters:
+        - $ref: '#/components/parameters/acceptHeader'
+      responses:
+        '200':
+          description: 'OK Response'
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/HelloResponse'
+      security:
+        - {}

@@ -1,0 +1,18 @@
+{
+  "scopes": [],
+  "api": {
+    "name": "Basis Period Reform",
+    "description": "An API for the support of the workflow around Basis Period Reform",
+    "context": "organisations/basis-period-reform",
+    "versions": [
+      {
+        "version": "1.0",
+        "status": "BETA",
+        "endpointsEnabled": true,
+        "access": {
+          "type": "PRIVATE"
+        }
+      }
+    ]
+  }
+}

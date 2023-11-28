@@ -1,0 +1,4 @@
+# api definition specific routes
+
+GET        /api/definition                                  uk.gov.hmrc.basisperiodreformapi.controllers.DocumentationController.definition()
+GET        /api/conf/:version/*file                         uk.gov.hmrc.basisperiodreformapi.controllers.DocumentationController.specification(version, file)
