@@ -14,6 +14,19 @@ servers:
     description: Production
 
 components:
+  securitySchemes:
+    userRestricted:
+      type: oauth2
+      description: |
+        HMRC supports OAuth 2.0 for authenticating user restricted API requests using an OAuth 2.0 Bearer Token in the AUTHORIZATION header.
+        See https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation/user-restricted-endpoints for details.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+          tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+          refreshUrl: https://api.service.hmrc.gov.uk/oauth/refresh
+          scopes:
+            read:basis-period-reform: Read data for Basis Period Reform
   parameters:
     acceptHeader:
       name: Accept
@@ -25,32 +38,310 @@ components:
         ]
       required: true
   schemas:
-    HelloResponse:
-      title: Hello Response
-      required:
-        - message
-      type: object
+    errors_def:
+      type: "object"
       properties:
+        code:
+          type: "integer"
+          format: "int32"
         message:
-          type: string
-      example:
-        message: Hello
+          type: "string"
+        dataSource:
+          type: "string"
+        httpStatusCode:
+          type: "integer"
+        httpErrorReturnedBySource:
+          type: "string"
+    info_def:
+      type: "object"
+      properties:
+        code:
+          type: "integer"
+          format: "int32"
+        message:
+          type: "string"
+    iv_overlap_relief_partnership_element_def:
+      properties:
+        seq_no:
+          type: "number"
+        tie_breaker:
+          type: "number"
+        name:
+          type: "string"
+        utr:
+          type: "integer"
+          format: "int64"
+        nino:
+          type: "string"
+        partnership_ref_number:
+          type: "integer"
+          format: "int64"
+        date_you_became_a_partner:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        date_you_left_the_partnership:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        basis_period_starts:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        basis_period_ends:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        share_of_profit_or_loss:
+          type: "number"
+        net_business_loss_partners:
+          type: "number"
+        overlap_relief_used_this_year:
+          type: "number"
+        overlap_profit_carried_forward:
+          type: "number"
+      description: "Extended schema of view iv_overlap_relief_partnership"
+    iv_overlap_relief_partnership_response_def:
+      properties:
+        name:
+          type: "string"
+        description:
+          type: "string"
+        elements:
+          type: "array"
+          description: "Results returned by the query"
+          items:
+            $ref: "#/components/schemas/iv_overlap_relief_partnership_element_def"
+        __errors__:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/errors_def"
+        __info__:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/info_def"
+    iv_overlap_relief_sole_trader_element_def:
+      properties:
+        seq_no:
+          type: "number"
+        tie_breaker:
+          type: "number"
+        name:
+          type: "string"
+        utr:
+          type: "integer"
+          format: "int64"
+        nino:
+          type: "string"
+        source_number:
+          type: "number"
+        name_of_business:
+          type: "string"
+        description_of_business:
+          type: "string"
+        date_of_commencement:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        date_ceased:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        accounting_period_starts:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        accounting_period_ends:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        basis_period_starts:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        basis_period_ends:
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: "string"
+          example: "2021-01-25T12:55:45.123"
+        accounting_date_changed:
+          type: "string"
+        overlap_relief_used_this_year:
+          type: "number"
+        overlap_profit_carried_forward:
+          type: "number"
+        net_business_profit:
+          type: "number"
+        net_business_loss:
+          type: "number"
+      description: "Extended schema of view iv_overlap_relief_sole_trader"
+    iv_overlap_relief_sole_trader_response_def:
+      properties:
+        name:
+          type: "string"
+        description:
+          type: "string"
+        elements:
+          type: "array"
+          description: "Results returned by the query"
+          items:
+            $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_def"
+        __errors__:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/errors_def"
+        __info__:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/info_def"
 
 paths:
-  /hello:
+  /views/iv_overlap_relief_partnership:
     get:
-      summary: Hello
-      description: >
-        An endpoint that says hello
+      tags:
+        - "iv_overlap_relief_partnership"
+      description: "Returns values of view iv_overlap_relief_partnership"
+      operationId: "queryView_iv_overlap_relief_partnership"
       parameters:
-        - $ref: '#/components/parameters/acceptHeader'
+        - name: "utr"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "partnership_ref_number"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        - $ref: "#/components/parameters/acceptHeader"
       responses:
-        '200':
-          description: 'OK Response'
+        "200":
+          description: "Success"
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/HelloResponse'
+                $ref: "#/components/schemas/iv_overlap_relief_partnership_response_def"
+        "204":
+          description: "No results were returned"
+          content:
+            application/json: {}
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "401":
+          description: "Authentication failed"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "403":
+          description: "Insufficient permissions to perform this request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "500":
+          description: "Runtime error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
       security:
-        - {}
+        - userRestricted:
+            - read:basis-period-reform
+
+  /views/iv_overlap_relief_sole_trader:
+    get:
+      tags:
+        - "iv_overlap_relief_sole_trader"
+      description: "Returns values of view iv_overlap_relief_sole_trader"
+      operationId: "queryView_iv_overlap_relief_sole_trader"
+      parameters:
+        - name: "utr"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_response_def"
+        "204":
+          description: "No results were returned"
+          content:
+            application/json: {}
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "401":
+          description: "Authentication failed"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "403":
+          description: "Insufficient permissions to perform this request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+        "500":
+          description: "Runtime error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  __errors__:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/errors_def"
+      security:
+        - userRestricted:
+            - read:basis-period-reform

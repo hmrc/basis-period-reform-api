@@ -1,3 +1,5 @@
+@import play.api.libs.json.Json
+@(apiStatus: String)
 {
   "scopes": [],
   "api": {
@@ -7,11 +9,11 @@
     "versions": [
       {
         "version": "1.0",
-        "status": "BETA",
-        "endpointsEnabled": true,
+        "status": "@apiStatus",
         "access": {
           "type": "PRIVATE"
-        }
+        },
+        "endpointsEnabled": @{apiStatus != "ALPHA"}
       }
     ]
   }

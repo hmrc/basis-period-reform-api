@@ -23,11 +23,14 @@ import controllers.Assets
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-@Singleton
-class DocumentationController @Inject() (assets: Assets, cc: ControllerComponents) extends BackendController(cc) {
+import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
+import uk.gov.hmrc.basisperiodreformapi.views.txt
 
-  def definition(): Action[AnyContent] = {
-    assets.at("/public/api", "definition.json")
+@Singleton
+class DocumentationController @Inject() (assets: Assets, appConfig: AppConfig, cc: ControllerComponents) extends BackendController(cc) {
+
+  def definition(): Action[AnyContent] = Action {
+    Ok(txt.definition(appConfig.apiStatus)).as("application/json")
   }
 
   def specification(version: String, file: String): Action[AnyContent] = {
