@@ -38,28 +38,23 @@ components:
         ]
       required: true
   schemas:
-    errors_def:
-      type: "object"
+    ErrorResponseSchema:
+      description: Error payload
+      type: object
       properties:
         code:
-          type: "integer"
-          format: "int32"
+          type: string
         message:
-          type: "string"
-        dataSource:
-          type: "string"
-        httpStatusCode:
-          type: "integer"
-        httpErrorReturnedBySource:
-          type: "string"
-    info_def:
-      type: "object"
-      properties:
-        code:
-          type: "integer"
-          format: "int32"
-        message:
-          type: "string"
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
     iv_overlap_relief_partnership_element_def:
       properties:
         seq_no:
@@ -112,14 +107,6 @@ components:
           description: "Results returned by the query"
           items:
             $ref: "#/components/schemas/iv_overlap_relief_partnership_element_def"
-        __errors__:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/errors_def"
-        __info__:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/info_def"
     iv_overlap_relief_sole_trader_element_def:
       properties:
         seq_no:
@@ -185,14 +172,6 @@ components:
           description: "Results returned by the query"
           items:
             $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_def"
-        __errors__:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/errors_def"
-        __info__:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/info_def"
 
 paths:
   /views/iv_overlap_relief_partnership:
@@ -231,45 +210,25 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "401":
           description: "Authentication failed"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "403":
           description: "Insufficient permissions to perform this request"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "500":
           description: "Runtime error"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
       security:
         - userRestricted:
             - read:basis-period-reform
@@ -303,45 +262,25 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "401":
           description: "Authentication failed"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "403":
           description: "Insufficient permissions to perform this request"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
         "500":
           description: "Runtime error"
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
+                $ref: "#/components/schemas/ErrorResponseSchema"
       security:
         - userRestricted:
             - read:basis-period-reform
