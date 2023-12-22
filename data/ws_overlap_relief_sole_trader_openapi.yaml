@@ -1,2328 +1,3283 @@
-openapi: "3.0.1"
+openapi: 3.0.1
 info:
-  title: "ws_overlap_relief_sole_trader"
-  description: "This web service provides operations on these Virtual DataPort views:\n\
-    * \"basis_period_reform\".\"iv_overlap_relief_sole_trader\""
-  version: "1.0.0"
+  title: Get Basis Period Reform Details (Sole Trader)
+  description: |-
+    This web service provides operations on these Virtual DataPort views:
+    * "basis_period_reform"."iv_overlap_relief_sole_trader"
+  version: 1.0.0
+  x-integration-catalogue:
+    reviewed-date: 2023-12-06T08:47:24.806832451Z
+    publisher-reference: Basis_period_reform_sole_trader
+    short-description: Basis Period Reform Sole Trader API
+    status: BETA
+    platform: HIP
+    backends:
+      - VDP
 externalDocs:
-  description: "Additional information about Denodo REST Web Services"
-  url: "https://community.denodo.com/docs/html/browse/8.0/vdp/administration/restful_architecture/restful_web_service/restful_web_service"
+  description: Additional information about Denodo REST Web Services
+  url: https://community.denodo.com/docs/html/browse/8.0/vdp/administration/restful_architecture/restful_web_service/restful_web_service
 servers:
-- url: "https://vdp.dev.denodo.hip.ns2n.corp.hmrc.gov.uk:9443/server/basis_period_reform/ws_overlap_relief_sole_trader"
+  - url: https://api.ipaas.prod.eis.ns2p.corp.hmrc.gov.uk/bpr/
+    description: Corporate - Production
+  - url: https://api.ipaas.test.eis.ns2n.corp.hmrc.gov.uk/bpr/
+    description: Corporate - Test
+  - url: https://hip.ws.hmrc.gov.uk/bpr/
+    description: MDTP - Production
+  - url: https://hip.ws.ibt.hmrc.gov.uk/bpr/
+    description: MDTP - QA
+security:
+  - oAuth2:
+      - read:BPR-sole-trader
 tags:
-- name: "iv_overlap_relief_sole_trader"
-  description: "Operations available for view iv_overlap_relief_sole_trader"
+  - name: iv_overlap_relief_sole_trader
+    description: Operations available for view iv_overlap_relief_sole_trader
 paths:
   /views/iv_overlap_relief_sole_trader:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Returns values of view iv_overlap_relief_sole_trader"
-      operationId: "queryView_iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Returns values of view iv_overlap_relief_sole_trader
+      operationId: queryView_iv_overlap_relief_sole_trader
       parameters:
-      - name: "seq_no"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+        - name: seq_no
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "tie_breaker"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: tie_breaker
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "name"
-        in: "query"
-        description: "Virtual DataPort type: text"
-        required: false
-        schema:
-          type: "string"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: name
+          in: query
           description: "Virtual DataPort type: text"
-      - name: "utr"
-        in: "query"
-        description: "Virtual DataPort type: long"
-        required: false
-        schema:
-          type: "integer"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: utr
+          in: query
           description: "Virtual DataPort type: long"
-          format: "int64"
-      - name: "nino"
-        in: "query"
-        description: "Virtual DataPort type: text"
-        required: false
-        schema:
-          type: "string"
+          required: true
+          schema:
+            format: int64
+            description: "Virtual DataPort type: long"
+            type: integer
+          style: form
+          explode: true
+        - name: nino
+          in: query
           description: "Virtual DataPort type: text"
-      - name: "source_number"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: source_number
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "name_of_business"
-        in: "query"
-        description: "Virtual DataPort type: text"
-        required: false
-        schema:
-          type: "string"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: name_of_business
+          in: query
           description: "Virtual DataPort type: text"
-      - name: "description_of_business"
-        in: "query"
-        description: "Virtual DataPort type: text"
-        required: false
-        schema:
-          type: "string"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: description_of_business
+          in: query
           description: "Virtual DataPort type: text"
-      - name: "date_of_commencement"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: date_of_commencement
+          in: query
           description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "date_ceased"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "accounting_period_starts"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "accounting_period_ends"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "basis_period_starts"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "basis_period_ends"
-        in: "query"
-        description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-        required: false
-        schema:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        example: "2021-01-25T12:55:45.123"
-      - name: "accounting_date_changed"
-        in: "query"
-        description: "Virtual DataPort type: text"
-        required: false
-        schema:
-          type: "string"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: commencement_sig
+          in: query
           description: "Virtual DataPort type: text"
-      - name: "overlap_relief_used_this_year"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: date_ceased
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_period_starts
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_period_ends
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: basis_period_starts
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: basis_period_ends
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_date_changed
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: overlap_relief_used_this_year
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "overlap_profit_carried_forward"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: overlap_profit_carried_forward
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "net_business_profit"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: net_business_profit
+          in: query
           description: "Virtual DataPort type: decimal"
-      - name: "net_business_loss"
-        in: "query"
-        description: "Virtual DataPort type: decimal"
-        required: false
-        schema:
-          type: "number"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: net_business_loss
+          in: query
           description: "Virtual DataPort type: decimal"
-      - in: "query"
-        $ref: "#/components/parameters/count_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/display_restful_references_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/expand_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/filter_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/format_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/group_by_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/having_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/jsoncallback_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/noescape_html_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/order_by_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/select_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/start_index_parameter"
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - $ref: '#/components/parameters/count_parameter'
+        - $ref: '#/components/parameters/display_restful_references_parameter'
+        - $ref: '#/components/parameters/expand_parameter'
+        - $ref: '#/components/parameters/filter_parameter'
+        - $ref: '#/components/parameters/format_parameter'
+        - $ref: '#/components/parameters/group_by_parameter'
+        - $ref: '#/components/parameters/having_parameter'
+        - $ref: '#/components/parameters/jsoncallback_parameter'
+        - $ref: '#/components/parameters/noescape_html_parameter'
+        - $ref: '#/components/parameters/order_by_parameter'
+        - $ref: '#/components/parameters/select_parameter'
+        - $ref: '#/components/parameters/start_index_parameter'
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_response_def"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_response_def"
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_response_def'
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_response_def'
         "204":
-          description: "No results were returned"
+          description: No results were returned
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0: {}
             application/json;charset=UTF-8;subtype=denodo-8.0: {}
+            application/xml;charset=UTF-8;subtype=denodo-8.0: {}
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
     post:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Inserts a new row on view iv_overlap_relief_sole_trader"
-      operationId: "insertResource_iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Inserts a new row on view iv_overlap_relief_sole_trader
+      operationId: insertResource_iv_overlap_relief_sole_trader
       parameters:
-      - $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       requestBody:
-        description: "New element"
+        description: New element
         content:
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_post_def"
           application/json:
             schema:
-              $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_post_def"
+              $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_post_def'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_post_def'
         required: true
       responses:
         "201":
-          description: "Success"
+          description: Success
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json:
               schema:
-                type: "object"
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json:
               schema:
-                type: "object"
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$count:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Returns the number of rows returned by a query to view iv_overlap_relief_sole_trader"
-      operationId: "count_iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Returns the number of rows returned by a query to view iv_overlap_relief_sole_trader
+      operationId: count_iv_overlap_relief_sole_trader
       parameters:
-      - in: "query"
-        $ref: "#/components/parameters/filter_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/format_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/group_by_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/having_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/jsoncallback_parameter"
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/filter_parameter'
+        - $ref: '#/components/parameters/format_parameter'
+        - $ref: '#/components/parameters/group_by_parameter'
+        - $ref: '#/components/parameters/having_parameter'
+        - $ref: '#/components/parameters/jsoncallback_parameter'
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
             text/plain;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "integer"
-                format: "int64"
+                format: int64
+                type: integer
         "204":
-          description: "No results were returned"
+          description: No results were returned
           content:
             text/plain;charset=UTF-8;subtype=denodo-8.0: {}
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$metadata:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Returns the metadata of view iv_overlap_relief_sole_trader. This\
-        \ includes the description of the view and the URLs to retrieve its schema\
-        \ and its associations."
-      operationId: "metadata_iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Returns the metadata of view iv_overlap_relief_sole_trader. This
+        includes the description of the view and the URLs to retrieve its schema and
+        its associations.
+      operationId: metadata_iv_overlap_relief_sole_trader
       parameters:
-      - in: "query"
-        $ref: "#/components/parameters/format_parameter"
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/format_parameter'
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_metadata_def"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_metadata_def"
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_metadata_def'
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_metadata_def'
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$associations:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Returns the metadata of the associations related to view iv_overlap_relief_sole_trader\
-        \ that are published with the service"
-      operationId: "associations_iv_overlap_relief_sole_traderiv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Returns the metadata of the associations related to view iv_overlap_relief_sole_trader
+        that are published with the service
+      operationId: associations_iv_overlap_relief_sole_traderiv_overlap_relief_sole_trader
       parameters:
-      - in: "query"
-        $ref: "#/components/parameters/format_parameter"
-      - in: "query"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/format_parameter'
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                $ref: "#/components/schemas/associations_def"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/associations_def"
+                $ref: '#/components/schemas/associations_def'
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/associations_def'
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$schema:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
       description: "Returns the schema of view iv_overlap_relief_sole_trader. This\
         \ a list of the published fields and types of the view. The names of the fields\
         \ are as they appear in the web service, not in the view (they may have been\
         \ renamed in the web service's configuration)"
-      operationId: "schema_iv_overlap_relief_sole_trader"
+      operationId: schema_iv_overlap_relief_sole_trader
       parameters:
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_schema_def"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_schema_def"
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_schema_def'
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_schema_def'
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
-            application/xml;charset=UTF-8;subtype=denodo-8.0:
-              schema:
-                type: "object"
-                properties:
-                  __errors__:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/errors_def"
-                xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
             application/json;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$xsd:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
-      description: "Returns the XSD describing the view iv_overlap_relief_sole_trader.\
-        \ It contains the link to the XSD schema describing the view output."
-      operationId: "xsd_iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
+      description: Returns the XSD describing the view iv_overlap_relief_sole_trader.
+        It contains the link to the XSD schema describing the view output.
+      operationId: xsd_iv_overlap_relief_sole_trader
       parameters:
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_xsd_def"
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_xsd_def'
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
   /views/iv_overlap_relief_sole_trader/$xsd-view-def:
     get:
       tags:
-      - "iv_overlap_relief_sole_trader"
+        - iv_overlap_relief_sole_trader
       description: "Returns the XSD describing the output of view iv_overlap_relief_sole_trader.\
         \ It contains the published fields and types of the view. The names of the\
         \ fields are as they appear in the web service, not in the view (they may\
         \ have been renamed in the web service's configuration)"
-      operationId: "xsd_view_def_iv_overlap_relief_sole_trader"
+      operationId: xsd_view_def_iv_overlap_relief_sole_trader
       parameters:
-      - in: "header"
-        $ref: "#/components/parameters/user_agent_header_parameter"
+        - $ref: '#/components/parameters/user_agent_header_parameter'
       responses:
         "200":
-          description: "Success"
+          description: Success
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                $ref: "#/components/schemas/iv_overlap_relief_sole_trader_xsd_view_def"
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_xsd_view_def'
         "400":
-          description: "Bad request"
+          description: Bad request
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
         "401":
-          description: "Authentication failed"
+          description: Authentication failed
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "403":
-          description: "Insufficient permissions to perform this request"
+          description: Insufficient permissions to perform this request
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
         "500":
-          description: "Runtime error"
+          description: Runtime error
           content:
             application/xml;charset=UTF-8;subtype=denodo-8.0:
               schema:
-                type: "object"
+                type: object
                 properties:
                   __errors__:
-                    type: "array"
+                    type: array
                     items:
-                      $ref: "#/components/schemas/errors_def"
+                      $ref: '#/components/schemas/errors_def'
                 xml:
-                  name: "__errors__"
-                  namespace: "http://www.denodo.com/restful"
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+  /views/iv_overlap_relief_sole_trader/{primaryKeyValue}:
+    get:
+      tags:
+        - iv_overlap_relief_sole_trader
+      description: Returns the row of iv_overlap_relief_sole_trader that matches the
+        specified primary key
+      operationId: queryViewPK_iv_overlap_relief_sole_trader
+      parameters:
+        - name: seq_no
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: tie_breaker
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: name
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: utr
+          in: query
+          description: "Virtual DataPort type: long"
+          required: true
+          schema:
+            format: int64
+            description: "Virtual DataPort type: long"
+            type: integer
+          style: form
+          explode: true
+        - name: nino
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: source_number
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: name_of_business
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: description_of_business
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: date_of_commencement
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: commencement_sig
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: date_ceased
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_period_starts
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_period_ends
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: basis_period_starts
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: basis_period_ends
+          in: query
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          required: false
+          schema:
+            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+            type: string
+            example: 2021-01-25T12:55:45.123
+          style: form
+          explode: true
+          example: 2021-01-25T12:55:45.123
+        - name: accounting_date_changed
+          in: query
+          description: "Virtual DataPort type: text"
+          required: false
+          schema:
+            description: "Virtual DataPort type: text"
+            type: string
+          style: form
+          explode: true
+        - name: overlap_relief_used_this_year
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: overlap_profit_carried_forward
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: net_business_profit
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - name: net_business_loss
+          in: query
+          description: "Virtual DataPort type: decimal"
+          required: false
+          schema:
+            description: "Virtual DataPort type: decimal"
+            type: number
+          style: form
+          explode: true
+        - $ref: '#/components/parameters/count_parameter'
+        - $ref: '#/components/parameters/display_restful_references_parameter'
+        - $ref: '#/components/parameters/expand_parameter'
+        - $ref: '#/components/parameters/filter_parameter'
+        - $ref: '#/components/parameters/format_parameter'
+        - $ref: '#/components/parameters/group_by_parameter'
+        - $ref: '#/components/parameters/having_parameter'
+        - $ref: '#/components/parameters/jsoncallback_parameter'
+        - $ref: '#/components/parameters/noescape_html_parameter'
+        - $ref: '#/components/parameters/order_by_parameter'
+        - $ref: '#/components/parameters/select_parameter'
+        - $ref: '#/components/parameters/start_index_parameter'
+        - $ref: '#/components/parameters/user_agent_header_parameter'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_def'
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_def'
+        "204":
+          description: No results were returned
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0: {}
+            application/xml;charset=UTF-8;subtype=denodo-8.0: {}
+        "400":
+          description: Bad request
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "401":
+          description: Authentication failed
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "403":
+          description: Insufficient permissions to perform this request
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "500":
+          description: Runtime error
+          content:
+            application/json;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml;charset=UTF-8;subtype=denodo-8.0:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+    put:
+      tags:
+        - iv_overlap_relief_sole_trader
+      description: Updates a row in iv_overlap_relief_sole_trader
+      operationId: updateResource_iv_overlap_relief_sole_trader
+      requestBody:
+        description: Element to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_put_def'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_put_def'
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "403":
+          description: Insufficient permissions to perform this request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "500":
+          description: Runtime error
+          content:
+            application/json:
+              schema:
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+    delete:
+      tags:
+        - iv_overlap_relief_sole_trader
+      description: Deletes a row in iv_overlap_relief_sole_trader
+      operationId: deleteResource_iv_overlap_relief_sole_trader
+      parameters:
+        - $ref: '#/components/parameters/user_agent_header_parameter'
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "403":
+          description: Insufficient permissions to perform this request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "500":
+          description: Runtime error
+          content:
+            application/json:
+              schema:
+                required:
+                  - origin
+                  - response
+                type: object
+                properties:
+                  origin:
+                    $ref: '#/components/schemas/HIP-originEnum'
+                  response:
+                    oneOf:
+                      - $ref: '#/components/schemas/HIP-failureResponse'
+                      - type: object
+                        properties:
+                          __errors__:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/errors_def'
+                        xml:
+                          name: __errors__
+                          namespace: http://www.denodo.com/restful
+                additionalProperties: false
+              examples:
+                HIP-originResponse:
+                  description: HIP-originResponse
+                  value:
+                    origin: HIP
+                    response:
+                      - type: Type of Failure
+                        reason: Reason for Failure
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  __errors__:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/errors_def'
+                xml:
+                  name: __errors__
+                  namespace: http://www.denodo.com/restful
+        "503":
+          description: Service Unavailable
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/HIP-originResponse'
+    parameters:
+      - name: primaryKeyValue
+        in: path
+        description: Primary key value
+        required: true
+        schema:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            type: string
+        style: simple
+        explode: true
 components:
   schemas:
     links_def:
-      type: "object"
+      type: object
       properties:
         rel:
-          type: "string"
+          type: string
           xml:
             attribute: true
         href:
-          type: "string"
+          type: string
           xml:
             attribute: true
         title:
-          type: "string"
+          type: string
           xml:
             attribute: true
         type:
-          type: "string"
-          description: "MIME type of a blob"
+          description: MIME type of a blob
+          type: string
           xml:
             attribute: true
       xml:
-        name: "link"
-        namespace: "http://www.w3.org/2005/Atom"
+        name: link
+        namespace: http://www.w3.org/2005/Atom
     associations_def:
-      type: "object"
+      type: object
       properties:
         view-name:
-          type: "string"
-          description: "Virtual DataPort view name"
+          description: Virtual DataPort view name
+          type: string
           xml:
             attribute: true
         association-metadata:
           minItems: 0
-          type: "array"
+          type: array
           items:
-            type: "object"
+            type: object
             properties:
               name:
-                type: "string"
-                description: "Association name"
+                description: Association name
+                type: string
                 xml:
                   attribute: true
               referential-constraint:
-                type: "boolean"
-                description: "Whether this association defines a referential constraint\
-                  \ or not"
+                description: Whether this association defines a referential constraint
+                  or not
+                type: boolean
                 xml:
                   attribute: true
               endpoints:
                 maxItems: 2
                 minItems: 2
-                type: "array"
+                type: array
                 items:
-                  type: "object"
+                  type: object
                   properties:
                     view-name:
-                      type: "string"
-                      description: "Virtual DataPort view name at this end point"
+                      description: Virtual DataPort view name at this end point
+                      type: string
                       xml:
                         attribute: true
                     role-name:
-                      type: "string"
-                      description: "Role name at this endpoint"
+                      description: Role name at this endpoint
+                      type: string
                       xml:
                         attribute: true
                     role-description:
-                      type: "string"
-                      description: "Role description"
+                      description: Role description
+                      type: string
                       xml:
                         attribute: true
                     multiplicity:
-                      type: "string"
-                      description: "Multiplicity at this end point"
+                      description: Multiplicity at this end point
+                      enum:
+                        - "0,1"
+                        - "1"
+                        - "0,*"
+                        - "+"
+                      type: string
                       xml:
                         attribute: true
-                      enum:
-                      - "0,1"
-                      - "1"
-                      - "0,*"
-                      - "+"
                     principal:
-                      type: "boolean"
-                      description: "Whether this end point is principal or dependent"
+                      description: Whether this end point is principal or dependent
+                      type: boolean
                       xml:
                         attribute: true
               link:
-                $ref: "#/components/schemas/links_def"
+                $ref: '#/components/schemas/links_def'
         link:
-          $ref: "#/components/schemas/links_def"
+          $ref: '#/components/schemas/links_def'
       xml:
-        name: "view-associations"
-        namespace: "http://www.denodo.com/restful"
+        name: view-associations
+        namespace: http://www.denodo.com/restful
     errors_def:
-      type: "object"
+      type: object
       properties:
         code:
-          type: "integer"
-          format: "int32"
+          format: int32
+          type: integer
           xml:
             attribute: true
         message:
-          type: "string"
+          type: string
           xml:
             attribute: true
         dataSource:
-          type: "string"
+          type: string
           xml:
             attribute: true
         httpStatusCode:
-          type: "integer"
+          type: integer
           xml:
             attribute: true
         httpErrorReturnedBySource:
-          type: "string"
+          type: string
           xml:
             attribute: true
       xml:
-        name: "error"
+        name: error
     info_def:
-      type: "object"
+      type: object
       properties:
         code:
-          type: "integer"
-          format: "int32"
+          format: int32
+          type: integer
           xml:
             attribute: true
         message:
-          type: "string"
+          type: string
           xml:
             attribute: true
       xml:
-        name: "info"
+        name: info
     iv_overlap_relief_sole_trader_element_def:
+      description: Extended schema of view iv_overlap_relief_sole_trader
       properties:
         seq_no:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         tie_breaker:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         utr:
-          type: "integer"
+          format: int64
           description: "Virtual DataPort type: long"
-          format: "int64"
+          type: integer
         nino:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         source_number:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         description_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         date_of_commencement:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
           description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        date_ceased:
           pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_date_changed:
-          type: "string"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        commencement_sig:
           description: "Virtual DataPort type: text"
+          type: string
+        date_ceased:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_date_changed:
+          description: "Virtual DataPort type: text"
+          type: string
         overlap_relief_used_this_year:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         overlap_profit_carried_forward:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_profit:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_loss:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         links:
-          type: "array"
+          type: array
           items:
-            $ref: "#/components/schemas/links_def"
-      description: "Extended schema of view iv_overlap_relief_sole_trader"
+            $ref: '#/components/schemas/links_def'
       xml:
-        name: "iv_overlap_relief_sole_trader"
-        namespace: "http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+        name: iv_overlap_relief_sole_trader
+        namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
     iv_overlap_relief_sole_trader_element_post_def:
+      description: Schema of view iv_overlap_relief_sole_trader as required by POST
+        requests
       properties:
         seq_no:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         tie_breaker:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         utr:
-          type: "integer"
+          format: int64
           description: "Virtual DataPort type: long"
-          format: "int64"
+          type: integer
         nino:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         source_number:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         description_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         date_of_commencement:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
           description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        date_ceased:
           pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_date_changed:
-          type: "string"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        commencement_sig:
           description: "Virtual DataPort type: text"
+          type: string
+        date_ceased:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_date_changed:
+          description: "Virtual DataPort type: text"
+          type: string
         overlap_relief_used_this_year:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         overlap_profit_carried_forward:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_profit:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_loss:
-          type: "number"
           description: "Virtual DataPort type: decimal"
-      description: "Schema of view iv_overlap_relief_sole_trader as required by POST\
-        \ requests"
+          type: number
       xml:
-        name: "iv_overlap_relief_sole_trader"
-        namespace: "http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+        name: iv_overlap_relief_sole_trader
+        namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
     iv_overlap_relief_sole_trader_element_put_def:
+      description: Schema of view iv_overlap_relief_sole_trader as required by PUT
+        requests
       properties:
         seq_no:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         tie_breaker:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name:
-          type: "string"
           description: "Virtual DataPort type: text"
-        utr:
-          type: "integer"
-          description: "Virtual DataPort type: long"
-          format: "int64"
+          type: string
         nino:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         source_number:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         name_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         description_of_business:
-          type: "string"
           description: "Virtual DataPort type: text"
+          type: string
         date_of_commencement:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
           description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        date_ceased:
           pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_starts:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        basis_period_ends:
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: "string"
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          example: "2021-01-25T12:55:45.123"
-        accounting_date_changed:
-          type: "string"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        commencement_sig:
           description: "Virtual DataPort type: text"
+          type: string
+        date_ceased:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_starts:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        basis_period_ends:
+          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+          type: string
+          example: 2021-01-25T12:55:45.123
+        accounting_date_changed:
+          description: "Virtual DataPort type: text"
+          type: string
         overlap_relief_used_this_year:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         overlap_profit_carried_forward:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_profit:
-          type: "number"
           description: "Virtual DataPort type: decimal"
+          type: number
         net_business_loss:
-          type: "number"
           description: "Virtual DataPort type: decimal"
-      description: "Schema of view iv_overlap_relief_sole_trader as required by PUT\
-        \ requests"
+          type: number
       xml:
-        name: "iv_overlap_relief_sole_trader"
-        namespace: "http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+        name: iv_overlap_relief_sole_trader
+        namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
     iv_overlap_relief_sole_trader_element_simplified_def:
+      description: Schema of view iv_overlap_relief_sole_trader
       properties:
         seq_no:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         tie_breaker:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         name:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         utr:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         nino:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         source_number:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         name_of_business:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         description_of_business:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         date_of_commencement:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
+        commencement_sig:
+          type: object
+          properties:
+            type:
+              description: The type of the field
+              type: string
         date_ceased:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         accounting_period_starts:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         accounting_period_ends:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         basis_period_starts:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         basis_period_ends:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         accounting_date_changed:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         overlap_relief_used_this_year:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         overlap_profit_carried_forward:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         net_business_profit:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
+              description: The type of the field
+              type: string
         net_business_loss:
-          type: "object"
+          type: object
           properties:
             type:
-              type: "string"
-              description: "The type of the field"
-      description: "Schema of view iv_overlap_relief_sole_trader"
+              description: The type of the field
+              type: string
       xml:
-        name: "iv_overlap_relief_sole_trader"
-        namespace: "http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+        name: iv_overlap_relief_sole_trader
+        namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
     iv_overlap_relief_sole_trader_xsd_def:
+      description: Schema of view iv_overlap_relief_sole_trader in XSD format
       properties:
         denodo:
-          type: "string"
           description: "Denodo namespace: http://www.denodo.com/restful"
+          type: string
           xml:
             attribute: true
         atom:
-          type: "string"
           description: "Atom namespace: http://www.w3.org/2005/Atom"
+          type: string
           xml:
             attribute: true
         attributeFormDefault:
-          type: "string"
           description: "The form for attributes declared in the target namespace of\
             \ this schema: unqualified"
+          type: string
           xml:
             attribute: true
         elementFormDefault:
-          type: "string"
           description: "The form for elements declared in the target namespace of\
             \ this schema: qualified"
+          type: string
           xml:
             attribute: true
         targetNamespace:
-          type: "string"
           description: "Namespace defined by this XSD: http://www.denodo.com/restful"
+          type: string
           xml:
             attribute: true
         import:
-          type: "object"
+          description: Import for schema $xsd-view-def
+          type: object
           properties:
             schemaLocation:
-              type: "string"
               description: "Schema's location: $xsd-view-def"
+              type: string
               xml:
                 attribute: true
             namespace:
-              type: "string"
               description: "Schema's target namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+              type: string
               xml:
                 attribute: true
-          description: "Import for schema $xsd-view-def"
         element:
-          type: "object"
+          type: object
           properties:
             name:
-              type: "string"
-              description: "View element"
+              description: View element
+              type: string
               xml:
                 attribute: true
             complexType:
-              type: "object"
+              type: object
               properties:
                 sequence:
-                  type: "object"
+                  type: object
                   properties:
                     viewLink:
-                      type: "object"
+                      type: object
                       properties:
                         xmlns:q1:
-                          type: "string"
-                          description: "http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+                          description: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
+                          type: string
                           xml:
                             attribute: true
                         maxOccurs:
-                          type: "string"
-                          description: "string"
+                          description: string
+                          type: string
                           xml:
                             attribute: true
                         ref:
-                          type: "string"
-                          description: "string"
+                          description: string
+                          type: string
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     atomlink:
-                      type: "object"
+                      type: object
                       properties:
                         maxOccurs:
-                          type: "string"
-                          description: "string"
+                          description: string
+                          type: string
                           xml:
                             attribute: true
                         ref:
-                          type: "string"
-                          description: "string"
+                          description: string
+                          type: string
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                 attribute:
-                  type: "object"
+                  description: "Name of the view: iv_overlap_relief_sole_trader"
+                  type: object
                   properties:
                     name:
-                      type: "string"
-                      description: "iv_overlap_relief_sole_trader"
+                      description: iv_overlap_relief_sole_trader
+                      type: string
                       xml:
                         attribute: true
                     type:
-                      type: "string"
-                      description: "string"
+                      description: string
+                      type: string
                       xml:
                         attribute: true
                     use:
-                      type: "string"
-                      description: "string"
+                      description: string
+                      type: string
                       xml:
                         attribute: true
-                  description: "Name of the view: iv_overlap_relief_sole_trader"
-      description: "Schema of view iv_overlap_relief_sole_trader in XSD format"
       xml:
-        name: "schema"
-        namespace: "http://www.w3.org/2001/XMLSchema"
+        name: schema
+        namespace: http://www.w3.org/2001/XMLSchema
     iv_overlap_relief_sole_trader_xsd_view_def:
+      description: Schema of view iv_overlap_relief_sole_trader in XSD format
       properties:
         denodo:
-          type: "string"
           description: "Denodo namespace: http://www.denodo.com/restful"
+          type: string
           xml:
             attribute: true
         atom:
-          type: "string"
           description: "Atom namespace: http://www.w3.org/2005/Atom"
+          type: string
           xml:
             attribute: true
         attributeFormDefault:
-          type: "string"
           description: "The form for attributes declared in the target namespace of\
             \ this schema: unqualified"
+          type: string
           xml:
             attribute: true
         elementFormDefault:
-          type: "string"
           description: "The form for elements declared in the target namespace of\
             \ this schema: qualified"
+          type: string
           xml:
             attribute: true
         targetNamespace:
-          type: "string"
           description: "Namespace defined by this XSD: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader"
+          type: string
           xml:
             attribute: true
         import:
-          type: "object"
+          description: Import for schema atom.xsd
+          type: object
           properties:
             schemaLocation:
-              type: "string"
               description: "Schema's location: atom.xsd"
+              type: string
               xml:
                 attribute: true
             namespace:
-              type: "string"
               description: "Schema's target namespace: http://www.w3.org/2005/Atom"
+              type: string
               xml:
                 attribute: true
-          description: "Import for schema atom.xsd"
         element:
-          type: "object"
+          type: object
           properties:
             name:
-              type: "string"
               description: "Names of the view: iv_overlap_relief_sole_trader"
+              type: string
               xml:
                 attribute: true
             complexType:
-              type: "object"
+              type: object
               properties:
                 sequence:
-                  type: "object"
+                  type: object
                   properties:
                     seq_no:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     tie_breaker:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     name:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: text"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     utr:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: long"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     nino:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: text"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     source_number:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     name_of_business:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: text"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     description_of_business:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: text"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     date_of_commencement:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: timestamp, format:\
                             \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
-                    date_ceased:
-                      type: "object"
+                        name: element
+                    commencement_sig:
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: "boolean"
-                          xml:
-                            attribute: true
-                      xml:
-                        name: "element"
-                    accounting_period_starts:
-                      type: "object"
-                      properties:
-                        name:
-                          type: "string"
-                          xml:
-                            attribute: true
-                        type:
-                          type: "string"
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: "boolean"
-                          xml:
-                            attribute: true
-                      xml:
-                        name: "element"
-                    accounting_period_ends:
-                      type: "object"
-                      properties:
-                        name:
-                          type: "string"
-                          xml:
-                            attribute: true
-                        type:
-                          type: "string"
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: "boolean"
-                          xml:
-                            attribute: true
-                      xml:
-                        name: "element"
-                    basis_period_starts:
-                      type: "object"
-                      properties:
-                        name:
-                          type: "string"
-                          xml:
-                            attribute: true
-                        type:
-                          type: "string"
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: "boolean"
-                          xml:
-                            attribute: true
-                      xml:
-                        name: "element"
-                    basis_period_ends:
-                      type: "object"
-                      properties:
-                        name:
-                          type: "string"
-                          xml:
-                            attribute: true
-                        type:
-                          type: "string"
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: "boolean"
-                          xml:
-                            attribute: true
-                      xml:
-                        name: "element"
-                    accounting_date_changed:
-                      type: "object"
-                      properties:
-                        name:
-                          type: "string"
-                          xml:
-                            attribute: true
-                        type:
-                          type: "string"
                           description: "Virtual DataPort type: text"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
+                    date_ceased:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: timestamp, format:\
+                            \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
+                    accounting_period_starts:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: timestamp, format:\
+                            \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
+                    accounting_period_ends:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: timestamp, format:\
+                            \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
+                    basis_period_starts:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: timestamp, format:\
+                            \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
+                    basis_period_ends:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: timestamp, format:\
+                            \ yyyy-MM-ddTHH:mm:ss.SSS"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
+                    accounting_date_changed:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          xml:
+                            attribute: true
+                        type:
+                          description: "Virtual DataPort type: text"
+                          type: string
+                          xml:
+                            attribute: true
+                        nillable:
+                          type: boolean
+                          xml:
+                            attribute: true
+                      xml:
+                        name: element
                     overlap_relief_used_this_year:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     overlap_profit_carried_forward:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     net_business_profit:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     net_business_loss:
-                      type: "object"
+                      type: object
                       properties:
                         name:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         type:
-                          type: "string"
                           description: "Virtual DataPort type: decimal"
+                          type: string
                           xml:
                             attribute: true
                         nillable:
-                          type: "boolean"
+                          type: boolean
                           xml:
                             attribute: true
                       xml:
-                        name: "element"
+                        name: element
                     element:
-                      type: "object"
+                      type: object
                       properties:
                         maxOccurs:
-                          type: "string"
+                          type: string
                           xml:
                             attribute: true
                         xmlns:q1:
-                          type: "string"
-                          description: "http://www.w3.org/2005/Atom"
+                          description: http://www.w3.org/2005/Atom
+                          type: string
                           xml:
                             attribute: true
                         ref:
-                          type: "string"
-                          description: "q1:link"
+                          description: q1:link
+                          type: string
                           xml:
                             attribute: true
-      description: "Schema of view iv_overlap_relief_sole_trader in XSD format"
       xml:
-        name: "schema"
-        namespace: "http://www.w3.org/2001/XMLSchema"
+        name: schema
+        namespace: http://www.w3.org/2001/XMLSchema
     iv_overlap_relief_sole_trader_response_def:
       properties:
         name:
-          type: "string"
-          description: "Virtual DataPort view name"
+          description: Virtual DataPort view name
+          type: string
           xml:
             attribute: true
         description:
-          type: "string"
-          description: "Virtual DataPort view description"
+          description: Virtual DataPort view description
+          type: string
           xml:
             attribute: true
         elements:
-          type: "array"
-          description: "Results returned by the query"
+          description: Results returned by the query
+          type: array
           items:
-            $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_def"
+            $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_def'
         links:
-          type: "array"
-          description: "Links available for the current element (e.g. pagination links)"
+          description: Links available for the current element (e.g. pagination links)
+          type: array
           items:
-            $ref: "#/components/schemas/links_def"
+            $ref: '#/components/schemas/links_def'
         __errors__:
-          type: "array"
-          xml:
-            name: "__errors__"
-            wrapped: true
+          type: array
           items:
-            $ref: "#/components/schemas/errors_def"
+            $ref: '#/components/schemas/errors_def'
+          xml:
+            name: __errors__
+            wrapped: true
         __info__:
-          type: "array"
-          xml:
-            name: "__info__"
-            wrapped: true
+          type: array
           items:
-            $ref: "#/components/schemas/info_def"
+            $ref: '#/components/schemas/info_def'
+          xml:
+            name: __info__
+            wrapped: true
       xml:
-        name: "view"
-        namespace: "http://www.denodo.com/restful"
+        name: view
+        namespace: http://www.denodo.com/restful
     iv_overlap_relief_sole_trader_schema_def:
       properties:
         name:
-          type: "string"
-          description: "Virtual DataPort view name"
+          description: Virtual DataPort view name
+          type: string
         properties:
-          $ref: "#/components/schemas/iv_overlap_relief_sole_trader_element_simplified_def"
+          $ref: '#/components/schemas/iv_overlap_relief_sole_trader_element_simplified_def'
     iv_overlap_relief_sole_trader_metadata_def:
       properties:
         name:
-          type: "string"
-          description: "Virtual DataPort database name"
+          description: Virtual DataPort database name
+          type: string
           xml:
             attribute: true
         description:
-          type: "string"
-          description: "Virtual DataPort database description"
+          description: Virtual DataPort database description
+          type: string
           xml:
             attribute: true
         views-metadata:
           maxItems: 1
           minItems: 1
-          type: "array"
+          type: array
           items:
             required:
-            - "links"
-            - "name"
-            type: "object"
+              - links
+              - name
+            type: object
             properties:
               name:
-                type: "string"
-                description: "Virtual DataPort view name"
+                description: Virtual DataPort view name
+                type: string
                 xml:
                   attribute: true
               links:
-                type: "array"
+                type: array
                 items:
-                  $ref: "#/components/schemas/links_def"
+                  $ref: '#/components/schemas/links_def'
             xml:
-              name: "view-metadata"
+              name: view-metadata
       xml:
-        name: "db"
-        namespace: "http://www.denodo.com/restful"
+        name: db
+        namespace: http://www.denodo.com/restful
+    HIP-originEnum:
+      enum:
+        - HIP
+        - HoD
+      type: string
+    HIP-failureResponse:
+      required:
+        - failures
+      type: object
+      properties:
+        failures:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+              - type
+              - reason
+            type: object
+            properties:
+              type:
+                type: string
+              reason:
+                type: string
+            additionalProperties: false
+    HIP-originResponse:
+      required:
+        - origin
+        - response
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/HIP-originEnum'
+        response:
+          $ref: '#/components/schemas/HIP-failureResponse'
+      additionalProperties: false
   parameters:
     format_parameter:
-      name: "$format"
-      in: "query"
-      description: "Defines the output format of the query"
+      name: $format
+      in: query
+      description: Defines the output format of the query
+      required: false
       schema:
-        type: "string"
-        default: "XML"
+        default: JSON
         enum:
-        - "XML"
-        - "JSON"
+          - JSON
+          - XML
+        type: string
+      style: form
+      explode: true
     filter_parameter:
-      name: "$filter"
-      in: "query"
-      description: "Filters the rows of a view using any condition. Any expression\
-        \ that can appear in the WHERE clause of a VQL query can be used."
+      name: $filter
+      in: query
+      description: Filters the rows of a view using any condition. Any expression
+        that can appear in the WHERE clause of a VQL query can be used.
+      required: false
       schema:
-        type: "string"
+        type: string
+      style: form
+      explode: true
     select_parameter:
-      name: "$select"
-      in: "query"
-      description: "Comma-separated list of fields to be returned in the result"
-      style: "form"
-      explode: false
+      name: $select
+      in: query
+      description: Comma-separated list of fields to be returned in the result
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     group_by_parameter:
-      name: "$groupby"
-      in: "query"
-      description: "Comma-separated list of fields to group by with"
-      style: "form"
-      explode: false
+      name: $groupby
+      in: query
+      description: Comma-separated list of fields to group by with
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     having_parameter:
-      name: "$having"
-      in: "query"
-      description: "Comma-separated list of fields to add to the HAVING clause of\
-        \ the query"
-      style: "form"
-      explode: false
+      name: $having
+      in: query
+      description: Comma-separated list of fields to add to the HAVING clause of the
+        query
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     order_by_parameter:
-      name: "$orderby"
-      in: "query"
+      name: $orderby
+      in: query
       description: "Sorts the results by one or more fields. It is a comma-separated\
         \ list of fields, each one followed by the modifier ASC (for ascending order)\
         \ and DESC (for descending order)."
-      style: "form"
-      explode: false
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     expand_parameter:
-      name: "$expand"
-      in: "query"
-      description: "Roles to expand in the query"
-      style: "form"
-      explode: false
+      name: $expand
+      in: query
+      description: Roles to expand in the query
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     start_index_parameter:
-      name: "$start_index"
-      in: "query"
-      description: "Used for pagination in view resources"
+      name: $start_index
+      in: query
+      description: Used for pagination in view resources
+      required: false
       schema:
+        format: int32
         minimum: 0
-        type: "integer"
-        format: "int32"
+        type: integer
+      style: form
+      explode: true
     count_parameter:
-      name: "$count"
-      in: "query"
-      description: "Used for pagination in view resources"
+      name: $count
+      in: query
+      description: Used for pagination in view resources
+      required: false
       schema:
+        format: int32
         minimum: 0
-        type: "integer"
-        format: "int32"
+        type: integer
+      style: form
+      explode: true
     jsoncallback_parameter:
-      name: "$jsoncallback"
-      in: "query"
+      name: $jsoncallback
+      in: query
       description: "The JSON representation can return the data of a view prefixed\
         \ with the name of a function. This is called JSON with padding or JSONP.\
         \ That way, when a browser receives the response, it receives a script rather\
         \ than data."
+      required: false
       schema:
-        type: "string"
+        type: string
+      style: form
+      explode: true
     display_restful_references_parameter:
-      name: "$displayRESTfulReferences"
-      in: "query"
+      name: $displayRESTfulReferences
+      in: query
       description: "By default, the result of requesting a view contains, in each\
         \ row, a link to the row itself and, for each association of the view, a link\
         \ to traverse the association. By using this parameter, you can configure\
         \ this behavior."
+      required: false
       schema:
-        type: "boolean"
         default: true
+        type: boolean
+      style: form
+      explode: true
     noescape_html_parameter:
-      name: "$noescapehtml"
-      in: "query"
-      description: "List of comma-separated fields whose values will not be HTML escaped."
-      style: "form"
-      explode: false
+      name: $noescapehtml
+      in: query
+      description: List of comma-separated fields whose values will not be HTML escaped.
+      required: false
       schema:
-        type: "array"
+        type: array
         items:
-          type: "string"
+          type: string
+      style: form
+      explode: false
     user_agent_header_parameter:
-      name: "User-agent"
-      in: "header"
+      name: User-agent
+      in: header
       description: "By including this header, communication between the web service\
         \ and the Virtual DataPort will be configured with this value."
+      required: false
       schema:
-        type: "string"
+        type: string
+      style: simple
+      explode: false
     infrastructure_provider_header_parameter:
-      name: "Infrastructure-provider"
-      in: "header"
+      name: Infrastructure-provider
+      in: header
       description: "By including this header, the hosting type of the client can be\
         \ specified."
+      required: false
       schema:
-        type: "string"
+        type: string
+      style: simple
+      explode: false
     infrastructure_region_header_parameter:
-      name: "Infrastructure-region"
-      in: "header"
+      name: Infrastructure-region
+      in: header
       description: "By including this header, the region of the client can be specified."
+      required: false
       schema:
-        type: "string"
+        type: string
+      style: simple
+      explode: false
+  securitySchemes:
+    Basic:
+      type: http
+      description: HTTP basic
+      name: Basic
+      scheme: basic
+    oAuth2:
+      type: oauth2
+      description: OAuth2 Client Credentials Flow
+      flows:
+        clientCredentials:
+          tokenUrl: /tokenUrl/not-required
+          scopes:
+            read:BPR-sole-trader: Returns data for sole trader
