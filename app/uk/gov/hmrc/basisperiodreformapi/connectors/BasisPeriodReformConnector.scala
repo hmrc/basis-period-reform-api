@@ -30,7 +30,7 @@ import uk.gov.hmrc.basisperiodreformapi.models._
 class BasisPeriodReformConnector @Inject() (http: HttpClient, appConfig: AppConfig)(implicit ec: ExecutionContext) extends BprMapper {
 
   lazy val headers: Seq[(String, String)] = Seq(
-    AUTHORIZATION -> s"Bearer ${appConfig.bprAuthorizationToken}"
+    AUTHORIZATION -> s"Basic ${appConfig.bprAuthorizationToken}"
   )
 
   def getPartnershipDetails(utr: Option[String], partnershipNumber: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[ReliefPartnershipResponse]] = {

@@ -26,7 +26,7 @@ object BprStub {
   def stubGetPartnership(httpStatus: Int, responseBody: String): StubMapping = {
     stubFor(
       get(urlPathEqualTo(partnershipPath))
-        .withHeader(AUTHORIZATION, equalTo("Bearer DUMMY"))
+        .withHeader(AUTHORIZATION, equalTo("Basic DUMMY"))
         .willReturn(
           aResponse()
             .withStatus(httpStatus)
