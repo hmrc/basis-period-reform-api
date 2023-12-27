@@ -25,4 +25,12 @@ class AppConfig @Inject() (config: Configuration) {
 
   val appName: String   = config.get[String]("appName")
   val apiStatus: String = config.get[String]("apiStatus")
+
+  private val bprProtocol: String  = config.get[String]("microservice.services.bpr.protocol")
+  private val bprHost: String      = config.get[String]("microservice.services.bpr.host")
+  private val bprPort: String      = config.get[String]("microservice.services.bpr.port")
+  private val bprUriPrefix: String = config.getOptional[String]("microservice.services.bpr.prefix").getOrElse("")
+
+  val bprAuthorizationToken: String = config.get[String]("microservice.services.bpr.token")
+  val bprBaseUrl: String            = s"$bprProtocol://$bprHost:$bprPort$bprUriPrefix"
 }
