@@ -46,6 +46,12 @@ class BprMapperSpec extends HmrcSpec with TableDrivenPropertyChecks {
       Json.toJson(resp.response.left.value) shouldBe Json.parse(Source.fromResource(s"./partnership/out/error.json").getLines().mkString)
     }
 
+    "transform an unknown error response" in new BprMapper {
+      val resp = enforcePartnership(HttpResponse(400, """{"fish":"cod"}""", Map.empty))
+      resp.status shouldBe 400
+      Json.toJson(resp.response.left.value) shouldBe Json.parse(Source.fromResource(s"./partnership/out/defaulterror.json").getLines().mkString)
+    }
+
     "transform an empty response" in new BprMapper {
       val resp = enforcePartnership(HttpResponse(400, "", Map.empty))
       resp.status shouldBe 400
