@@ -1,0 +1,8 @@
+{
+  "errors": [
+    {
+      "code": "0",
+      "message": "The value of the parameter 'utr' is not valid."
+    }
+  ]
+}

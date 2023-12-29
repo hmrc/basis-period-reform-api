@@ -13,6 +13,7 @@ ThisBuild / semanticdbVersion                                    := scalafixSema
 
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
+  .disablePlugins(JUnitXmlReportPlugin)
   .settings(
     majorVersion := 0,
     targetJvm    := "jvm-11",
@@ -28,6 +29,7 @@ lazy val microservice = Project(appName, file("."))
   )
   .configs(IntegrationTest)
   .settings(integrationTestSettings())
+  .settings(scalafixConfigSettings(IntegrationTest))
   .settings(
     IntegrationTest / unmanagedSourceDirectories += baseDirectory.value / "testcommon",
     IntegrationTest / unmanagedResourceDirectories += baseDirectory.value / "testcommon" / "resources"
@@ -40,7 +42,7 @@ commands ++= Seq(
   Command.command("clean-and-test") { state => "clean" :: "compile" :: "run-all-tests" :: state },
 
   // Coverage does not need compile !
-  Command.command("pre-commit") { state => "clean" :: "scalafmtAll" :: "scalafixAll" :: "coverage" :: "run-all-tests" :: "coverageReport" :: "coverageOff" :: state }
+  Command.command("pre-commit") { state => "clean" :: "scalafmtAll" :: "scalafixAll" :: "coverage" :: "run-all-tests" :: "coverageAggregate" :: state }
 )
 
 Global / bloopAggregateSourceDependencies := true

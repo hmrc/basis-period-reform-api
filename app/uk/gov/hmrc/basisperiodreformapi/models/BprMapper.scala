@@ -35,6 +35,7 @@ trait BprMapper {
   }
 
   def enforcePartnership: HttpResponse => TypedWrappedResponse[ReliefPartnershipResponse] = enforceResponse[ReliefPartnershipResponse]
+  def enforceSoleTrader: HttpResponse => TypedWrappedResponse[SoleTraderResponse]         = enforceResponse[SoleTraderResponse]
 
   private def mapError[T](response: HttpResponse): TypedWrappedResponse[T] = {
     if (response.body.nonEmpty) {

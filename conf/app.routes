@@ -1,3 +1,4 @@
 # microservice specific routes
 
 GET        /views/iv_overlap_relief_partnership        uk.gov.hmrc.basisperiodreformapi.controllers.BasisPeriodReformController.partnership(utr:Option[String], partnership_ref_number:Option[String])
+GET        /views/iv_overlap_relief_sole_trader        uk.gov.hmrc.basisperiodreformapi.controllers.BasisPeriodReformController.soleTrader(utr:Option[String])
