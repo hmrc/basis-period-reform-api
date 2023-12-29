@@ -16,17 +16,19 @@
 
 package uk.gov.hmrc.basisperiodreformapi.connectors
 
-import uk.gov.hmrc.basisperiodreformapi.AsyncHmrcSpec
+import scala.io.Source
+
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.{Application, Configuration}
+
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.Json
-import uk.gov.hmrc.basisperiodreformapi.connectors.stubs.BprStub
-import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, DenodoErrors, ReliefPartnershipResponse, SoleTraderResponse, TypedWrappedResponse}
+import play.api.{Application, Configuration}
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.http.test.WireMockSupport
 
-import scala.io.Source
+import uk.gov.hmrc.basisperiodreformapi.AsyncHmrcSpec
+import uk.gov.hmrc.basisperiodreformapi.connectors.stubs.BprStub
+import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, ReliefPartnershipResponse, SoleTraderResponse, TypedWrappedResponse}
 
 class BasisPeriodReformConnectorISpec extends AsyncHmrcSpec with GuiceOneAppPerSuite with WireMockSupport {
 
@@ -66,7 +68,7 @@ class BasisPeriodReformConnectorISpec extends AsyncHmrcSpec with GuiceOneAppPerS
       BprStub.stubGetSoleTrader(200, Source.fromResource("soletrader/in/single.json").getLines().mkString)
       val expectedResponse = Json.parse(Source.fromResource("soletrader/out/single.json").getLines().mkString).as[SoleTraderResponse]
 
-      val result = await(underTest.getSoleTrader(Some("123")))
+      val result = await(underTest.getSoleTraderDetails(Some("123")))
       result shouldBe TypedWrappedResponse(200, Right(expectedResponse))
     }
 
@@ -74,7 +76,7 @@ class BasisPeriodReformConnectorISpec extends AsyncHmrcSpec with GuiceOneAppPerS
       BprStub.stubGetSoleTrader(400, Source.fromResource("soletrader/in/error.json").getLines().mkString)
       val expectedResponse = Json.parse(Source.fromResource("soletrader/out/error.json").getLines().mkString).as[ApiErrors]
 
-      val result = await(underTest.getSoleTrader(Some("123")))
+      val result = await(underTest.getSoleTraderDetails(Some("123")))
       result shouldBe TypedWrappedResponse(400, Left(expectedResponse))
     }
   }

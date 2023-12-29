@@ -66,10 +66,12 @@ class BasisPeriodReformControllerSpec extends HmrcSpec with ResetMocksAfterEachT
       GetPartnershipDetails.verifyNotCalled()
     }
   }
-  "GET /views/iv_overlap_relief_sole_trader" should {
-    val fakeRequest = FakeRequest("GET", "/views/iv_overlap_relief_sole_trader")
 
-    val someUtr = Some("987654321")
+  "GET /views/iv_overlap_relief_sole_trader" should {
+
+    val fakeRequest = FakeRequest("GET", "/views/iv_overlap_relief_sole_trader")
+    val someUtr     = Some("987654321")
+
     "return 200 when wrapped 200" in {
       Authorise.asPrivilegedApplication()
       GetSoleTrader.returns(200, SoleTraderResponse(None, None, None))

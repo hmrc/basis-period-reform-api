@@ -44,7 +44,7 @@ object SoleTrader {
   import play.api.libs.functional.syntax._
   import play.api.libs.json._
 
-  implicit val reliefFormat: Format[SoleTrader] = (
+  implicit val soleTraderFormat: Format[SoleTrader] = (
     (JsPath \ "seq_no").formatNullable[Double] and
       (JsPath \ "tie_breaker").formatNullable[Double] and
       (JsPath \ "name").formatNullable[String] and

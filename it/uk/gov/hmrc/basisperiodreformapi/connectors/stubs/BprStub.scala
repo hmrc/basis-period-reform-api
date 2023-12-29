@@ -18,11 +18,12 @@ package uk.gov.hmrc.basisperiodreformapi.connectors.stubs
 
 import com.github.tomakehurst.wiremock.client.WireMock._
 import com.github.tomakehurst.wiremock.stubbing.StubMapping
+
 import play.api.http.HeaderNames.AUTHORIZATION
 
 object BprStub {
   val partnershipPath = "/iv_overlap_relief_partnership"
-  val traderPath      = "/iv_overlap_relief_sole_trader"
+  val soleTraderPath  = "/iv_overlap_relief_sole_trader"
 
   def stubGetPartnership(httpStatus: Int, responseBody: String): StubMapping = {
     stubFor(
@@ -38,7 +39,7 @@ object BprStub {
 
   def stubGetSoleTrader(httpStatus: Int, responseBody: String): StubMapping = {
     stubFor(
-      get(urlPathEqualTo(traderPath))
+      get(urlPathEqualTo(soleTraderPath))
         .withHeader(AUTHORIZATION, equalTo("Basic DUMMY"))
         .willReturn(
           aResponse()

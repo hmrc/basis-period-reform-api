@@ -44,7 +44,7 @@ class BasisPeriodReformController @Inject() (bprConnector: BasisPeriodReformConn
     Action.async { implicit request =>
       authorised(AuthProviders(PrivilegedApplication)) {
         bprConnector
-          .getSoleTrader(utr)
+          .getSoleTraderDetails(utr)
           .map(wrapped => Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_))))
       } recover recovery
     }

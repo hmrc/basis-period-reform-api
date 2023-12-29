@@ -54,23 +54,23 @@ trait BasisPeriodReformConnectorMockModule extends MockitoSugar with ArgumentMat
   object GetSoleTrader {
 
     def returns(status: Int, response: SoleTraderResponse): Unit = {
-      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
+      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
     }
 
     def returnsError(status: Int, response: ApiErrors): Unit = {
-      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
+      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
     }
 
     def returnsException(): Unit = {
-      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.failed(new HttpException("error", 500)))
+      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.failed(new HttpException("error", 500)))
     }
 
     def verifyCalledWith(utr: Option[String]): Unit = {
-      verify(mockBprConnector).getSoleTrader(eqTo(utr))(*)
+      verify(mockBprConnector).getSoleTraderDetails(eqTo(utr))(*)
     }
 
     def verifyNotCalled(): Unit = {
-      verify(mockBprConnector, never).getSoleTrader(*)(*)
+      verify(mockBprConnector, never).getSoleTraderDetails(*)(*)
     }
   }
 
