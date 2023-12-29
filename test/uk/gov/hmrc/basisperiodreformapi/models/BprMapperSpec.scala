@@ -26,7 +26,7 @@ import uk.gov.hmrc.http.HttpResponse
 
 class BprMapperSpec extends HmrcSpec with TableDrivenPropertyChecks {
 
-  "BPR Mapper" should {
+  "Partnership" should {
     "transform a successful empty partnership" in new BprMapper {
       val cases = Table(("FileName", "status"), ("empty.json", 200), ("single.json", 202), ("multiple.json", 204))
 
@@ -56,6 +56,33 @@ class BprMapperSpec extends HmrcSpec with TableDrivenPropertyChecks {
       val resp = enforcePartnership(HttpResponse(400, "", Map.empty))
       resp.status shouldBe 400
       Json.toJson(resp.response.left.value) shouldBe Json.parse(Source.fromResource(s"./partnership/out/defaulterror.json").getLines().mkString)
+    }
+  }
+
+  "sole trader" should {
+    "transform a successful" in new BprMapper {
+      val cases = Table(("FileName", "status"), ("empty.json", 200), ("single.json", 202), ("multiple.json", 204))
+
+      forAll(cases) {
+        case (filename, status) =>
+          val body = Json.parse(Source.fromResource(s"./soletrader/in/$filename").getLines().mkString)
+          val resp = enforceSoleTrader(HttpResponse(status, body, Map.empty))
+          resp.status shouldBe status
+          Json.toJson(resp.response.value) shouldBe Json.parse(Source.fromResource(s"./soletrader/out/$filename").getLines().mkString)
+      }
+    }
+
+    "transform an error response" in new BprMapper {
+      val body = Json.parse(Source.fromResource(s"./soletrader/in/error.json").getLines().mkString)
+      val resp = enforceSoleTrader(HttpResponse(400, body, Map.empty))
+      resp.status shouldBe 400
+      Json.toJson(resp.response.left.value) shouldBe Json.parse(Source.fromResource(s"./soletrader/out/error.json").getLines().mkString)
+    }
+
+    "transform an empty response" in new BprMapper {
+      val resp = enforceSoleTrader(HttpResponse(400, "", Map.empty))
+      resp.status shouldBe 400
+      Json.toJson(resp.response.left.value) shouldBe Json.parse(Source.fromResource(s"./soletrader/out/defaulterror.json").getLines().mkString)
     }
   }
 }

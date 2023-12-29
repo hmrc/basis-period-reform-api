@@ -22,7 +22,7 @@ import play.api.{Application, Configuration}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.Json
 import uk.gov.hmrc.basisperiodreformapi.connectors.stubs.BprStub
-import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, DenodoErrors, ReliefPartnershipResponse, TypedWrappedResponse}
+import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, DenodoErrors, ReliefPartnershipResponse, SoleTraderResponse, TypedWrappedResponse}
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.http.test.WireMockSupport
 
@@ -57,6 +57,24 @@ class BasisPeriodReformConnectorISpec extends AsyncHmrcSpec with GuiceOneAppPerS
       val expectedResponse = Json.parse(Source.fromResource("partnership/out/error.json").getLines().mkString).as[ApiErrors]
 
       val result = await(underTest.getPartnershipDetails(Some("123"), Some("456")))
+      result shouldBe TypedWrappedResponse(400, Left(expectedResponse))
+    }
+  }
+
+  "sole trader details" should {
+    "return success" in {
+      BprStub.stubGetSoleTrader(200, Source.fromResource("soletrader/in/single.json").getLines().mkString)
+      val expectedResponse = Json.parse(Source.fromResource("soletrader/out/single.json").getLines().mkString).as[SoleTraderResponse]
+
+      val result = await(underTest.getSoleTrader(Some("123")))
+      result shouldBe TypedWrappedResponse(200, Right(expectedResponse))
+    }
+
+    "return error" in {
+      BprStub.stubGetSoleTrader(400, Source.fromResource("soletrader/in/error.json").getLines().mkString)
+      val expectedResponse = Json.parse(Source.fromResource("soletrader/out/error.json").getLines().mkString).as[ApiErrors]
+
+      val result = await(underTest.getSoleTrader(Some("123")))
       result shouldBe TypedWrappedResponse(400, Left(expectedResponse))
     }
   }

@@ -23,7 +23,7 @@ import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
 import uk.gov.hmrc.http.HttpException
 
 import uk.gov.hmrc.basisperiodreformapi.connectors._
-import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, ReliefPartnershipResponse, TypedWrappedResponse}
+import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, ReliefPartnershipResponse, SoleTraderResponse, TypedWrappedResponse}
 
 trait BasisPeriodReformConnectorMockModule extends MockitoSugar with ArgumentMatchersSugar {
   val mockBprConnector: BasisPeriodReformConnector = mock[BasisPeriodReformConnector]
@@ -48,6 +48,29 @@ trait BasisPeriodReformConnectorMockModule extends MockitoSugar with ArgumentMat
 
     def verifyNotCalled(): Unit = {
       verify(mockBprConnector, never).getPartnershipDetails(*, *)(*)
+    }
+  }
+
+  object GetSoleTrader {
+
+    def returns(status: Int, response: SoleTraderResponse): Unit = {
+      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
+    }
+
+    def returnsError(status: Int, response: ApiErrors): Unit = {
+      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
+    }
+
+    def returnsException(): Unit = {
+      when(mockBprConnector.getSoleTrader(*)(*)).thenReturn(Future.failed(new HttpException("error", 500)))
+    }
+
+    def verifyCalledWith(utr: Option[String]): Unit = {
+      verify(mockBprConnector).getSoleTrader(eqTo(utr))(*)
+    }
+
+    def verifyNotCalled(): Unit = {
+      verify(mockBprConnector, never).getSoleTrader(*)(*)
     }
   }
 

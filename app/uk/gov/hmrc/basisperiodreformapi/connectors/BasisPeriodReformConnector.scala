@@ -40,4 +40,12 @@ class BasisPeriodReformConnector @Inject() (http: HttpClient, appConfig: AppConf
       queryParams = Seq(utr.map(("utr", _)), partnershipNumber.map(("partnership_ref_number", _))).collect { case Some(param) => param }
     ).map(enforcePartnership)
   }
+
+  def getSoleTrader(utr: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[SoleTraderResponse]] = {
+    http.GET[HttpResponse](
+      url = s"${appConfig.bprBaseUrl}/iv_overlap_relief_sole_trader",
+      headers = headers,
+      queryParams = utr.map(("utr", _)).fold(Seq[(String, String)]())(Seq(_))
+    ).map(enforceSoleTrader)
+  }
 }

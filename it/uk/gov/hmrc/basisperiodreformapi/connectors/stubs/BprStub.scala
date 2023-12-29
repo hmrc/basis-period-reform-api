@@ -22,10 +22,23 @@ import play.api.http.HeaderNames.AUTHORIZATION
 
 object BprStub {
   val partnershipPath = "/iv_overlap_relief_partnership"
+  val traderPath      = "/iv_overlap_relief_sole_trader"
 
   def stubGetPartnership(httpStatus: Int, responseBody: String): StubMapping = {
     stubFor(
       get(urlPathEqualTo(partnershipPath))
+        .withHeader(AUTHORIZATION, equalTo("Basic DUMMY"))
+        .willReturn(
+          aResponse()
+            .withStatus(httpStatus)
+            .withBody(responseBody)
+        )
+    )
+  }
+
+  def stubGetSoleTrader(httpStatus: Int, responseBody: String): StubMapping = {
+    stubFor(
+      get(urlPathEqualTo(traderPath))
         .withHeader(AUTHORIZATION, equalTo("Basic DUMMY"))
         .willReturn(
           aResponse()

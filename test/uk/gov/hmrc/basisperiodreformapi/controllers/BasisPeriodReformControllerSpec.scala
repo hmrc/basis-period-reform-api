@@ -66,4 +66,39 @@ class BasisPeriodReformControllerSpec extends HmrcSpec with ResetMocksAfterEachT
       GetPartnershipDetails.verifyNotCalled()
     }
   }
+  "GET /views/iv_overlap_relief_sole_trader" should {
+    val fakeRequest = FakeRequest("GET", "/views/iv_overlap_relief_sole_trader")
+
+    val someUtr = Some("987654321")
+    "return 200 when wrapped 200" in {
+      Authorise.asPrivilegedApplication()
+      GetSoleTrader.returns(200, SoleTraderResponse(None, None, None))
+      val result = controller.soleTrader(someUtr)(fakeRequest)
+      status(result) shouldBe Status.OK
+      GetSoleTrader.verifyCalledWith(someUtr)
+    }
+
+    "return 400 when wrapped 400" in {
+      Authorise.asPrivilegedApplication()
+      GetSoleTrader.returnsError(400, ApiErrors(List(ApiError("0", "ERROR"))))
+      val result = controller.soleTrader(someUtr)(fakeRequest)
+      status(result) shouldBe Status.BAD_REQUEST
+      GetSoleTrader.verifyCalledWith(someUtr)
+    }
+
+    "return 500 when exception" in {
+      Authorise.asPrivilegedApplication()
+      GetSoleTrader.returnsException()
+      val result = controller.soleTrader(someUtr)(fakeRequest)
+      status(result) shouldBe Status.INTERNAL_SERVER_ERROR
+      GetSoleTrader.verifyCalledWith(someUtr)
+    }
+
+    "return 401 when standard app" in {
+      Authorise.asStandardApplication()
+      val result = controller.soleTrader(someUtr)(fakeRequest)
+      status(result) shouldBe Status.FORBIDDEN
+      GetSoleTrader.verifyNotCalled()
+    }
+  }
 }

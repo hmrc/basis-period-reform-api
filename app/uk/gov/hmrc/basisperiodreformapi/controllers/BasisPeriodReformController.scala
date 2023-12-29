@@ -39,4 +39,13 @@ class BasisPeriodReformController @Inject() (bprConnector: BasisPeriodReformConn
           .map(wrapped => Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_))))
       } recover recovery
     }
+
+  def soleTrader(utr: Option[String]): Action[AnyContent] =
+    Action.async { implicit request =>
+      authorised(AuthProviders(PrivilegedApplication)) {
+        bprConnector
+          .getSoleTrader(utr)
+          .map(wrapped => Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_))))
+      } recover recovery
+    }
 }
