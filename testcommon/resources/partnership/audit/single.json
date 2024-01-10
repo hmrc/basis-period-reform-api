@@ -1,0 +1,22 @@
+{
+  "utr": "987654321",
+  "partnershipNumber": "5600000015",
+  "reliefPartnerships": [
+    {
+      "sequenceNumber": 1,
+      "tieBreaker": 1,
+      "name": "Mr D NICHOLLS",
+      "utr": 987654321,
+      "nino": "DN123456A",
+      "partnershipRefNumber": 5600000015,
+      "dateYouBecamePartner": "1994-10-11T00:00:00",
+      "dateYouLeftPartnership": "1995-10-11T00:00:00",
+      "basisPeriodStart": "1993-04-12T00:00:00",
+      "basisPeriodEnd": "1997-06-06T00:00:00",
+      "shareOfProfitOrLoss": 1234567890.12,
+      "netBusinessLossPartners": 2234567890.34,
+      "overlapReliefUsedThisYear": 3234567890.56,
+      "overlapProfitCarriedForward": 4234567890.78
+    }
+  ]
+}

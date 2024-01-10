@@ -1,0 +1,25 @@
+{
+  "utr": "987654321",
+  "reliefPartnerships": [
+    {
+      "sequenceNumber": 27,
+      "tieBreaker": 2,
+      "name": "MR J JONES",
+      "utr": 100000010,
+      "nino": "JJ123456D",
+      "sourceNumber": 100000001,
+      "nameOfBusiness": "Bicycle Maker",
+      "descriptionOfBusiness": "Manufacturer",
+      "dateOfCommencement": "1997-01-27T00:00:00",
+      "accountingPeriodStart": "2023-04-06T00:00:00",
+      "accountingPeriodEnd": "2024-04-05T00:00:00",
+      "basisPeriodStart": "2008-01-28T00:00:00",
+      "basisPeriodEnd": "2008-01-29T00:00:00",
+      "accountingDateChanged": "N",
+      "overlapReliefUsedThisYear": 27,
+      "overlapProfitCarriedForward": 3,
+      "netBusinessProfit": 4.5,
+      "netBusinessLoss": 0.01
+    }
+  ]
+}

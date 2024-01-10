@@ -57,7 +57,20 @@ object ReliefPartnership {
   )(ReliefPartnership.apply, unlift(ReliefPartnership.unapply))
 
 }
+case class PartnershipAuditDetails(utr: Option[String], partnershipNumber: Option[String], reliefPartnerships: Option[List[ReliefPartnership]])
 
+object PartnershipAuditDetails {
+  import play.api.libs.json._
+  import play.api.libs.functional.syntax._
+  implicit val auditFormat: OFormat[ReliefPartnership] = Json.format[ReliefPartnership]
+
+  implicit val format: OFormat[PartnershipAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
+    (JsPath \ "partnershipNumber").formatNullable[String] and
+    (JsPath \ "reliefPartnerships").formatNullable[List[ReliefPartnership]])(
+    PartnershipAuditDetails.apply,
+    unlift(PartnershipAuditDetails.unapply)
+  )
+}
 case class ReliefPartnershipResponse(name: Option[String], description: Option[String], elements: Option[List[ReliefPartnership]])
 
 object ReliefPartnershipResponse {

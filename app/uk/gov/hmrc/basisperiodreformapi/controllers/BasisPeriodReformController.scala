@@ -19,33 +19,53 @@ package uk.gov.hmrc.basisperiodreformapi.controllers
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
-import play.api.libs.json.Json
+import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.auth.core.AuthProvider.PrivilegedApplication
 import uk.gov.hmrc.auth.core.{AuthProviders, AuthorisedFunctions}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import uk.gov.hmrc.basisperiodreformapi.connectors.{AuthConnector, BasisPeriodReformConnector}
+import uk.gov.hmrc.basisperiodreformapi.models._
+import uk.gov.hmrc.basisperiodreformapi.services.AuditService
 
 @Singleton()
-class BasisPeriodReformController @Inject() (bprConnector: BasisPeriodReformConnector, val authConnector: AuthConnector, cc: ControllerComponents)(implicit ec: ExecutionContext)
-    extends BackendController(cc) with AuthorisedFunctions {
+class BasisPeriodReformController @Inject() (
+    bprConnector: BasisPeriodReformConnector,
+    auditService: AuditService,
+    val authConnector: AuthConnector,
+    cc: ControllerComponents
+  )(implicit ec: ExecutionContext
+  ) extends BackendController(cc) with AuthorisedFunctions {
 
   def partnership(utr: Option[String], partnershipNumber: Option[String]): Action[AnyContent] =
     Action.async { implicit request =>
       authorised(AuthProviders(PrivilegedApplication)) {
-        bprConnector
-          .getPartnershipDetails(utr, partnershipNumber)
-          .map(wrapped => Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_))))
+        for {
+          wrapped <- bprConnector.getPartnershipDetails(utr, partnershipNumber)
+          _        = auditService.audit("GetOverlapReliefPartnership", toAuditDetails(utr, partnershipNumber, wrapped))
+        } yield Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_)))
       } recover recovery
     }
+
+  private def toAuditDetails(utr: Option[String], partnershipNumber: Option[String], wrapped: TypedWrappedResponse[ReliefPartnershipResponse]): JsObject = wrapped.response match {
+    case Right(details) => Json.toJsObject(PartnershipAuditDetails(utr, partnershipNumber, details.elements))
+    case Left(_)        => Json.obj()
+  }
 
   def soleTrader(utr: Option[String]): Action[AnyContent] =
     Action.async { implicit request =>
       authorised(AuthProviders(PrivilegedApplication)) {
-        bprConnector
-          .getSoleTraderDetails(utr)
-          .map(wrapped => Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_))))
+        for {
+          wrapped <- bprConnector.getSoleTraderDetails(utr)
+          _        = auditService.audit("GetOverlapReliefSoleTrader", toAuditDetails(utr, wrapped))
+
+        } yield Status(wrapped.status)(wrapped.response.fold(Json.toJson(_), Json.toJson(_)))
       } recover recovery
     }
+
+  private def toAuditDetails(utr: Option[String], wrapped: TypedWrappedResponse[SoleTraderResponse]): JsObject = wrapped.response match {
+    case Right(details) => Json.toJsObject(SoleTraderAuditDetails(utr, details.elements))
+    case Left(_)        => Json.obj()
+  }
 }
