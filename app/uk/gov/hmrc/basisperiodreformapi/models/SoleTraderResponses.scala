@@ -67,7 +67,19 @@ object SoleTrader {
   )(SoleTrader.apply, unlift(SoleTrader.unapply))
 
 }
+case class SoleTraderAuditDetails(utr: Option[String], reliefPartnerships: Option[List[SoleTrader]])
 
+object SoleTraderAuditDetails {
+  import play.api.libs.json._
+  import play.api.libs.functional.syntax._
+  implicit val auditFormat: OFormat[SoleTrader] = Json.format[SoleTrader]
+
+  implicit val format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
+    (JsPath \ "reliefPartnerships").formatNullable[List[SoleTrader]])(
+    SoleTraderAuditDetails.apply,
+    unlift(SoleTraderAuditDetails.unapply)
+  )
+}
 case class SoleTraderResponse(name: Option[String], description: Option[String], elements: Option[List[SoleTrader]])
 
 object SoleTraderResponse {
