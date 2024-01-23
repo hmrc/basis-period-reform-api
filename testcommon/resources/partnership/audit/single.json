@@ -16,7 +16,8 @@
       "shareOfProfitOrLoss": 1234567890.12,
       "netBusinessLossPartners": 2234567890.34,
       "overlapReliefUsedThisYear": 3234567890.56,
-      "overlapProfitCarriedForward": 4234567890.78
+      "overlapProfitCarriedForward": 4234567890.78,
+      "taxYear": 2023
     }
   ]
 }

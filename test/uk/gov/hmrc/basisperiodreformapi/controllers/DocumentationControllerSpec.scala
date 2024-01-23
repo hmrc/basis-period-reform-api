@@ -32,8 +32,8 @@ import uk.gov.hmrc.basisperiodreformapi.AsyncHmrcSpec
 import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
 
 class DocumentationControllerSpec extends AsyncHmrcSpec with GuiceOneAppPerSuite with BeforeAndAfterEach {
-  implicit def mat: akka.stream.Materializer = app.injector.instanceOf[akka.stream.Materializer]
-  val mockAppConfig: AppConfig               = mock[AppConfig]
+  implicit def mat: org.apache.pekko.stream.Materializer = app.injector.instanceOf[org.apache.pekko.stream.Materializer]
+  val mockAppConfig: AppConfig                           = mock[AppConfig]
 
   override lazy val app: Application = GuiceApplicationBuilder()
     .overrides(bind[AppConfig].to(mockAppConfig))

@@ -21,7 +21,8 @@
       "overlap_relief_used_this_year": 27,
       "overlap_profit_carried_forward": 3,
       "net_business_profit": 4.5,
-      "net_business_loss": 0.01
+      "net_business_loss": 0.01,
+      "tax_year": 2023
     }
   ],
   "links": [

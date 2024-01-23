@@ -1,3 +1,4 @@
+---
 openapi: 3.0.1
 info:
   title: Get Basis Period Reform Details (Sole Trader)
@@ -6,8 +7,7 @@ info:
     * "basis_period_reform"."iv_overlap_relief_sole_trader"
   version: 1.0.0
   x-integration-catalogue:
-    reviewed-date: 2023-12-06T08:47:24.806832451Z
-    publisher-reference: Basis_period_reform_sole_trader
+    reviewed-date: 2024-01-17T08:47:24.806832451Z
     short-description: Basis Period Reform Sole Trader API
     status: BETA
     platform: HIP
@@ -39,33 +39,6 @@ paths:
       description: Returns values of view iv_overlap_relief_sole_trader
       operationId: queryView_iv_overlap_relief_sole_trader
       parameters:
-        - name: seq_no
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: tie_breaker
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: name
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
         - name: utr
           in: query
           description: "Virtual DataPort type: long"
@@ -74,170 +47,6 @@ paths:
             format: int64
             description: "Virtual DataPort type: long"
             type: integer
-          style: form
-          explode: true
-        - name: nino
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: source_number
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: name_of_business
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: description_of_business
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: date_of_commencement
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: commencement_sig
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: date_ceased
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_period_starts
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_period_ends
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: basis_period_starts
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: basis_period_ends
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_date_changed
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: overlap_relief_used_this_year
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: overlap_profit_carried_forward
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: net_business_profit
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: net_business_loss
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
         - $ref: '#/components/parameters/count_parameter'
         - $ref: '#/components/parameters/display_restful_references_parameter'
         - $ref: '#/components/parameters/expand_parameter'
@@ -1255,33 +1064,6 @@ paths:
         specified primary key
       operationId: queryViewPK_iv_overlap_relief_sole_trader
       parameters:
-        - name: seq_no
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: tie_breaker
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: name
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
         - name: utr
           in: query
           description: "Virtual DataPort type: long"
@@ -1290,170 +1072,6 @@ paths:
             format: int64
             description: "Virtual DataPort type: long"
             type: integer
-          style: form
-          explode: true
-        - name: nino
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: source_number
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: name_of_business
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: description_of_business
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: date_of_commencement
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: commencement_sig
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: date_ceased
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_period_starts
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_period_ends
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: basis_period_starts
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: basis_period_ends
-          in: query
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          required: false
-          schema:
-            description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-            pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-            type: string
-            example: 2021-01-25T12:55:45.123
-          style: form
-          explode: true
-          example: 2021-01-25T12:55:45.123
-        - name: accounting_date_changed
-          in: query
-          description: "Virtual DataPort type: text"
-          required: false
-          schema:
-            description: "Virtual DataPort type: text"
-            type: string
-          style: form
-          explode: true
-        - name: overlap_relief_used_this_year
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: overlap_profit_carried_forward
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: net_business_profit
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
-        - name: net_business_loss
-          in: query
-          description: "Virtual DataPort type: decimal"
-          required: false
-          schema:
-            description: "Virtual DataPort type: decimal"
-            type: number
-          style: form
-          explode: true
         - $ref: '#/components/parameters/count_parameter'
         - $ref: '#/components/parameters/display_restful_references_parameter'
         - $ref: '#/components/parameters/expand_parameter'
@@ -2132,6 +1750,9 @@ components:
         net_business_loss:
           description: "Virtual DataPort type: decimal"
           type: number
+        tax_year:
+          description: "Virtual DataPort type: decimal"
+          type: number
         links:
           type: array
           items:
@@ -2143,155 +1764,16 @@ components:
       description: Schema of view iv_overlap_relief_sole_trader as required by POST
         requests
       properties:
-        seq_no:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        tie_breaker:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        name:
-          description: "Virtual DataPort type: text"
-          type: string
         utr:
           format: int64
           description: "Virtual DataPort type: long"
           type: integer
-        nino:
-          description: "Virtual DataPort type: text"
-          type: string
-        source_number:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        name_of_business:
-          description: "Virtual DataPort type: text"
-          type: string
-        description_of_business:
-          description: "Virtual DataPort type: text"
-          type: string
-        date_of_commencement:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        commencement_sig:
-          description: "Virtual DataPort type: text"
-          type: string
-        date_ceased:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_period_starts:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_period_ends:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        basis_period_starts:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        basis_period_ends:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_date_changed:
-          description: "Virtual DataPort type: text"
-          type: string
-        overlap_relief_used_this_year:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        overlap_profit_carried_forward:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        net_business_profit:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        net_business_loss:
-          description: "Virtual DataPort type: decimal"
-          type: number
       xml:
         name: iv_overlap_relief_sole_trader
         namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
     iv_overlap_relief_sole_trader_element_put_def:
       description: Schema of view iv_overlap_relief_sole_trader as required by PUT
         requests
-      properties:
-        seq_no:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        tie_breaker:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        name:
-          description: "Virtual DataPort type: text"
-          type: string
-        nino:
-          description: "Virtual DataPort type: text"
-          type: string
-        source_number:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        name_of_business:
-          description: "Virtual DataPort type: text"
-          type: string
-        description_of_business:
-          description: "Virtual DataPort type: text"
-          type: string
-        date_of_commencement:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        commencement_sig:
-          description: "Virtual DataPort type: text"
-          type: string
-        date_ceased:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_period_starts:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_period_ends:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        basis_period_starts:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        basis_period_ends:
-          description: "Virtual DataPort type: timestamp, format: yyyy-MM-ddTHH:mm:ss.SSS"
-          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
-          type: string
-          example: 2021-01-25T12:55:45.123
-        accounting_date_changed:
-          description: "Virtual DataPort type: text"
-          type: string
-        overlap_relief_used_this_year:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        overlap_profit_carried_forward:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        net_business_profit:
-          description: "Virtual DataPort type: decimal"
-          type: number
-        net_business_loss:
-          description: "Virtual DataPort type: decimal"
-          type: number
       xml:
         name: iv_overlap_relief_sole_trader
         namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_sole_trader
@@ -2413,6 +1895,12 @@ components:
               description: The type of the field
               type: string
         net_business_loss:
+          type: object
+          properties:
+            type:
+              description: The type of the field
+              type: string
+        tax_year:
           type: object
           properties:
             type:
@@ -2594,60 +2082,6 @@ components:
                 sequence:
                   type: object
                   properties:
-                    seq_no:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    tie_breaker:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    name:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
                     utr:
                       type: object
                       properties:
@@ -2657,300 +2091,6 @@ components:
                             attribute: true
                         type:
                           description: "Virtual DataPort type: long"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    nino:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    source_number:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    name_of_business:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    description_of_business:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    date_of_commencement:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    commencement_sig:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    date_ceased:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    accounting_period_starts:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    accounting_period_ends:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    basis_period_starts:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    basis_period_ends:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: timestamp, format:\
-                            \ yyyy-MM-ddTHH:mm:ss.SSS"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    accounting_date_changed:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: text"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    overlap_relief_used_this_year:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    overlap_profit_carried_forward:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    net_business_profit:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
-                          type: string
-                          xml:
-                            attribute: true
-                        nillable:
-                          type: boolean
-                          xml:
-                            attribute: true
-                      xml:
-                        name: element
-                    net_business_loss:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          xml:
-                            attribute: true
-                        type:
-                          description: "Virtual DataPort type: decimal"
                           type: string
                           xml:
                             attribute: true
@@ -3103,30 +2243,23 @@ components:
       name: $format
       in: query
       description: Defines the output format of the query
-      required: false
       schema:
         default: JSON
         enum:
           - JSON
           - XML
         type: string
-      style: form
-      explode: true
     filter_parameter:
       name: $filter
       in: query
       description: Filters the rows of a view using any condition. Any expression
         that can appear in the WHERE clause of a VQL query can be used.
-      required: false
       schema:
         type: string
-      style: form
-      explode: true
     select_parameter:
       name: $select
       in: query
       description: Comma-separated list of fields to be returned in the result
-      required: false
       schema:
         type: array
         items:
@@ -3137,7 +2270,6 @@ components:
       name: $groupby
       in: query
       description: Comma-separated list of fields to group by with
-      required: false
       schema:
         type: array
         items:
@@ -3149,7 +2281,6 @@ components:
       in: query
       description: Comma-separated list of fields to add to the HAVING clause of the
         query
-      required: false
       schema:
         type: array
         items:
@@ -3162,7 +2293,6 @@ components:
       description: "Sorts the results by one or more fields. It is a comma-separated\
         \ list of fields, each one followed by the modifier ASC (for ascending order)\
         \ and DESC (for descending order)."
-      required: false
       schema:
         type: array
         items:
@@ -3173,7 +2303,6 @@ components:
       name: $expand
       in: query
       description: Roles to expand in the query
-      required: false
       schema:
         type: array
         items:
@@ -3184,24 +2313,18 @@ components:
       name: $start_index
       in: query
       description: Used for pagination in view resources
-      required: false
       schema:
         format: int32
         minimum: 0
         type: integer
-      style: form
-      explode: true
     count_parameter:
       name: $count
       in: query
       description: Used for pagination in view resources
-      required: false
       schema:
         format: int32
         minimum: 0
         type: integer
-      style: form
-      explode: true
     jsoncallback_parameter:
       name: $jsoncallback
       in: query
@@ -3209,11 +2332,8 @@ components:
         \ with the name of a function. This is called JSON with padding or JSONP.\
         \ That way, when a browser receives the response, it receives a script rather\
         \ than data."
-      required: false
       schema:
         type: string
-      style: form
-      explode: true
     display_restful_references_parameter:
       name: $displayRESTfulReferences
       in: query
@@ -3221,17 +2341,13 @@ components:
         \ row, a link to the row itself and, for each association of the view, a link\
         \ to traverse the association. By using this parameter, you can configure\
         \ this behavior."
-      required: false
       schema:
         default: true
         type: boolean
-      style: form
-      explode: true
     noescape_html_parameter:
       name: $noescapehtml
       in: query
       description: List of comma-separated fields whose values will not be HTML escaped.
-      required: false
       schema:
         type: array
         items:
@@ -3243,30 +2359,21 @@ components:
       in: header
       description: "By including this header, communication between the web service\
         \ and the Virtual DataPort will be configured with this value."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
     infrastructure_provider_header_parameter:
       name: Infrastructure-provider
       in: header
       description: "By including this header, the hosting type of the client can be\
         \ specified."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
     infrastructure_region_header_parameter:
       name: Infrastructure-region
       in: header
       description: "By including this header, the region of the client can be specified."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
   securitySchemes:
     Basic:
       type: http

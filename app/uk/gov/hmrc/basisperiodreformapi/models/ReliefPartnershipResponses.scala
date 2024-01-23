@@ -32,7 +32,8 @@ case class ReliefPartnership(
     shareOfProfitOrLoss: Option[Double],
     netBusinessLossPartners: Option[Double],
     overlapReliefUsedThisYear: Option[Double],
-    overlapProfitCarriedForward: Option[Double]
+    overlapProfitCarriedForward: Option[Double],
+    taxYear: Option[Int]
   )
 
 object ReliefPartnership {
@@ -53,7 +54,8 @@ object ReliefPartnership {
       (JsPath \ "share_of_profit_or_loss").formatNullable[Double] and
       (JsPath \ "net_business_loss_partners").formatNullable[Double] and
       (JsPath \ "overlap_relief_used_this_year").formatNullable[Double] and
-      (JsPath \ "overlap_profit_carried_forward").formatNullable[Double]
+      (JsPath \ "overlap_profit_carried_forward").formatNullable[Double] and
+      (JsPath \ "tax_year").formatNullable[Int]
   )(ReliefPartnership.apply, unlift(ReliefPartnership.unapply))
 
 }
