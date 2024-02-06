@@ -28,6 +28,7 @@ case class SoleTrader(
     nameOfBusiness: Option[String],
     descriptionOfBusiness: Option[String],
     dateOfCommencement: Option[String],
+    commencementSig: Option[String],
     dateCeased: Option[String],
     accountingPeriodStart: Option[String],
     accountingPeriodEnd: Option[String],
@@ -37,7 +38,8 @@ case class SoleTrader(
     overlapReliefUsedThisYear: Option[Double],
     overlapProfitCarriedForward: Option[Double],
     netBusinessProfit: Option[Double],
-    netBusinessLoss: Option[Double]
+    netBusinessLoss: Option[Double],
+    taxYear: Option[Int]
   )
 
 object SoleTrader {
@@ -54,6 +56,7 @@ object SoleTrader {
       (JsPath \ "name_of_business").formatNullable[String] and
       (JsPath \ "description_of_business").formatNullable[String] and
       (JsPath \ "date_of_commencement").formatNullable[String] and
+      (JsPath \ "commencement_sig").formatNullable[String] and
       (JsPath \ "date_ceased").formatNullable[String] and
       (JsPath \ "accounting_period_starts").formatNullable[String] and
       (JsPath \ "accounting_period_ends").formatNullable[String] and
@@ -63,7 +66,8 @@ object SoleTrader {
       (JsPath \ "overlap_relief_used_this_year").formatNullable[Double] and
       (JsPath \ "overlap_profit_carried_forward").formatNullable[Double] and
       (JsPath \ "net_business_profit").formatNullable[Double] and
-      (JsPath \ "net_business_loss").formatNullable[Double]
+      (JsPath \ "net_business_loss").formatNullable[Double] and
+      (JsPath \ "tax_year").formatNullable[Int]
   )(SoleTrader.apply, unlift(SoleTrader.unapply))
 
 }

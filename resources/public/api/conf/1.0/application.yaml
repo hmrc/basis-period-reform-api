@@ -95,6 +95,8 @@ components:
           type: "number"
         overlap_profit_carried_forward:
           type: "number"
+        tax_year:
+          type: "number"
       description: "Extended schema of view iv_overlap_relief_partnership"
     iv_overlap_relief_partnership_response_def:
       properties:
@@ -130,6 +132,9 @@ components:
           pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
           type: "string"
           example: "2021-01-25T12:55:45.123"
+        commencement_sig:
+          type: "string"
+          example: "Y"
         date_ceased:
           pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
           type: "string"
@@ -159,6 +164,8 @@ components:
         net_business_profit:
           type: "number"
         net_business_loss:
+          type: "number"
+        tax_year:
           type: "number"
       description: "Extended schema of view iv_overlap_relief_sole_trader"
     iv_overlap_relief_sole_trader_response_def:

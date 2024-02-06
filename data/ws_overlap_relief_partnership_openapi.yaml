@@ -1,3 +1,4 @@
+---
 openapi: 3.0.1
 info:
   title: Get Basis Period Reform Details (Partnership)
@@ -6,8 +7,7 @@ info:
     * "basis_period_reform"."iv_overlap_relief_partnership"
   version: 1.0.0
   x-integration-catalogue:
-    reviewed-date: 2023-12-06T08:47:24.806832451Z
-    publisher-reference: Basis_period_reform_partnership
+    reviewed-date: 2024-01-17T08:47:24.806832451Z
     short-description: Basis Period Reform Partnership API
     status: BETA
     platform: HIP
@@ -47,8 +47,6 @@ paths:
             format: int64
             description: "Virtual DataPort type: long"
             type: integer
-          style: form
-          explode: true
         - name: partnership_ref_number
           in: query
           description: "Virtual DataPort type: long"
@@ -57,8 +55,6 @@ paths:
             format: int64
             description: "Virtual DataPort type: long"
             type: integer
-          style: form
-          explode: true
         - $ref: '#/components/parameters/count_parameter'
         - $ref: '#/components/parameters/display_restful_references_parameter'
         - $ref: '#/components/parameters/expand_parameter'
@@ -1257,6 +1253,9 @@ components:
         overlap_profit_carried_forward:
           description: "Virtual DataPort type: decimal"
           type: number
+        tax_year:
+          description: "Virtual DataPort type: decimal"
+          type: number
         links:
           type: array
           items:
@@ -1282,15 +1281,6 @@ components:
     iv_overlap_relief_partnership_element_put_def:
       description: Schema of view iv_overlap_relief_partnership as required by PUT
         requests
-      properties:
-        utr:
-          format: int64
-          description: "Virtual DataPort type: long"
-          type: integer
-        partnership_ref_number:
-          format: int64
-          description: "Virtual DataPort type: long"
-          type: integer
       xml:
         name: iv_overlap_relief_partnership
         namespace: http://www.denodo.com/restful/basis_period_reform/views/iv_overlap_relief_partnership
@@ -1376,6 +1366,12 @@ components:
               description: The type of the field
               type: string
         overlap_profit_carried_forward:
+          type: object
+          properties:
+            type:
+              description: The type of the field
+              type: string
+        tax_year:
           type: object
           properties:
             type:
@@ -1736,30 +1732,23 @@ components:
       name: $format
       in: query
       description: Defines the output format of the query
-      required: false
       schema:
         default: JSON
         enum:
           - JSON
           - XML
         type: string
-      style: form
-      explode: true
     filter_parameter:
       name: $filter
       in: query
       description: Filters the rows of a view using any condition. Any expression
         that can appear in the WHERE clause of a VQL query can be used.
-      required: false
       schema:
         type: string
-      style: form
-      explode: true
     select_parameter:
       name: $select
       in: query
       description: Comma-separated list of fields to be returned in the result
-      required: false
       schema:
         type: array
         items:
@@ -1770,7 +1759,6 @@ components:
       name: $groupby
       in: query
       description: Comma-separated list of fields to group by with
-      required: false
       schema:
         type: array
         items:
@@ -1782,7 +1770,6 @@ components:
       in: query
       description: Comma-separated list of fields to add to the HAVING clause of the
         query
-      required: false
       schema:
         type: array
         items:
@@ -1795,7 +1782,6 @@ components:
       description: "Sorts the results by one or more fields. It is a comma-separated\
         \ list of fields, each one followed by the modifier ASC (for ascending order)\
         \ and DESC (for descending order)."
-      required: false
       schema:
         type: array
         items:
@@ -1806,7 +1792,6 @@ components:
       name: $expand
       in: query
       description: Roles to expand in the query
-      required: false
       schema:
         type: array
         items:
@@ -1817,24 +1802,18 @@ components:
       name: $start_index
       in: query
       description: Used for pagination in view resources
-      required: false
       schema:
         format: int32
         minimum: 0
         type: integer
-      style: form
-      explode: true
     count_parameter:
       name: $count
       in: query
       description: Used for pagination in view resources
-      required: false
       schema:
         format: int32
         minimum: 0
         type: integer
-      style: form
-      explode: true
     jsoncallback_parameter:
       name: $jsoncallback
       in: query
@@ -1842,11 +1821,8 @@ components:
         \ with the name of a function. This is called JSON with padding or JSONP.\
         \ That way, when a browser receives the response, it receives a script rather\
         \ than data."
-      required: false
       schema:
         type: string
-      style: form
-      explode: true
     display_restful_references_parameter:
       name: $displayRESTfulReferences
       in: query
@@ -1854,17 +1830,13 @@ components:
         \ row, a link to the row itself and, for each association of the view, a link\
         \ to traverse the association. By using this parameter, you can configure\
         \ this behavior."
-      required: false
       schema:
         default: true
         type: boolean
-      style: form
-      explode: true
     noescape_html_parameter:
       name: $noescapehtml
       in: query
       description: List of comma-separated fields whose values will not be HTML escaped.
-      required: false
       schema:
         type: array
         items:
@@ -1876,30 +1848,21 @@ components:
       in: header
       description: "By including this header, communication between the web service\
         \ and the Virtual DataPort will be configured with this value."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
     infrastructure_provider_header_parameter:
       name: Infrastructure-provider
       in: header
       description: "By including this header, the hosting type of the client can be\
         \ specified."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
     infrastructure_region_header_parameter:
       name: Infrastructure-region
       in: header
       description: "By including this header, the region of the client can be specified."
-      required: false
       schema:
         type: string
-      style: simple
-      explode: false
   securitySchemes:
     Basic:
       type: http

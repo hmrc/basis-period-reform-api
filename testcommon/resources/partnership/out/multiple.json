@@ -14,7 +14,8 @@
       "share_of_profit_or_loss": 1.12,
       "net_business_loss_partners": 2.34,
       "overlap_relief_used_this_year": 3.56,
-      "overlap_profit_carried_forward": 4.78
+      "overlap_profit_carried_forward": 4.78,
+      "tax_year": 2023
     },
     {
       "seq_no": 2,
@@ -29,7 +30,8 @@
       "share_of_profit_or_loss": 1,
       "net_business_loss_partners": 2.34,
       "overlap_relief_used_this_year": 3.56,
-      "overlap_profit_carried_forward": 4.78
+      "overlap_profit_carried_forward": 4.78,
+      "tax_year": 2024
     }
   ]
 }
