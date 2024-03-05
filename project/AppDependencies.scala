@@ -1,12 +1,11 @@
-import play.core.PlayVersion
-import play.sbt.PlayImport._
-import sbt.Keys.libraryDependencies
 import sbt._
 
 object AppDependencies {
 
-  private val bootstrapVersion = "8.4.0"
-  val commonDomainVersion      = "0.10.0"
+  def apply(): Seq[ModuleID] = compile ++ test
+
+  private val bootstrapVersion    = "8.4.0"
+  private val commonDomainVersion = "0.10.0"
 
   val compile = Seq(
     "uk.gov.hmrc" %% "bootstrap-backend-play-30" % bootstrapVersion
@@ -15,5 +14,5 @@ object AppDependencies {
   val test = Seq(
     "uk.gov.hmrc" %% "bootstrap-test-play-30"          % bootstrapVersion,
     "uk.gov.hmrc" %% "api-platform-test-common-domain" % commonDomainVersion
-  ).map(_ % "test, it")
+  ).map(_ % "test")
 }
