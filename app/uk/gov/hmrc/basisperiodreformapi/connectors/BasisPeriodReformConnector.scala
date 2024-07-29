@@ -21,31 +21,32 @@ import scala.concurrent.{ExecutionContext, Future}
 
 import play.api.http.HeaderNames.AUTHORIZATION
 import uk.gov.hmrc.http.HttpReads.Implicits._
-import uk.gov.hmrc.http.{HeaderCarrier, HttpClient, HttpResponse}
+import uk.gov.hmrc.http.client.HttpClientV2
+import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse, StringContextOps}
 
 import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
 import uk.gov.hmrc.basisperiodreformapi.models._
 
 @Singleton
-class BasisPeriodReformConnector @Inject() (http: HttpClient, appConfig: AppConfig)(implicit ec: ExecutionContext) extends BprMapper {
+class BasisPeriodReformConnector @Inject() (http: HttpClientV2, appConfig: AppConfig)(implicit ec: ExecutionContext) extends BprMapper {
 
-  lazy val headers: Seq[(String, String)] = Seq(
-    AUTHORIZATION -> s"Basic ${appConfig.bprAuthorizationToken}"
-  )
+  lazy val authHeader: (String, String) = AUTHORIZATION -> s"Basic ${appConfig.bprAuthorizationToken}"
 
   def getPartnershipDetails(utr: Option[String], partnershipNumber: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[ReliefPartnershipResponse]] = {
-    http.GET[HttpResponse](
-      url = s"${appConfig.bprBaseUrl}/iv_overlap_relief_partnership",
-      headers = headers,
-      queryParams = Seq(utr.map(("utr", _)), partnershipNumber.map(("partnership_ref_number", _))).collect { case Some(param) => param }
-    ).map(enforcePartnership)
+    val params = Seq(utr.map(("utr", _)), partnershipNumber.map(("partnership_ref_number", _))).collect { case Some(param) => param }
+
+    http.get(url"${appConfig.bprBaseUrl}/iv_overlap_relief_partnership?$params")
+      .setHeader(authHeader)
+      .execute[HttpResponse]
+      .map(enforcePartnership)
   }
 
   def getSoleTraderDetails(utr: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[SoleTraderResponse]] = {
-    http.GET[HttpResponse](
-      url = s"${appConfig.bprBaseUrl}/iv_overlap_relief_sole_trader",
-      headers = headers,
-      queryParams = utr.map(("utr", _)).fold(Seq[(String, String)]())(Seq(_))
-    ).map(enforceSoleTrader)
+    val params = utr.map(("utr", _)).fold(Seq[(String, String)]())(Seq(_))
+
+    http.get(url"${appConfig.bprBaseUrl}/iv_overlap_relief_sole_trader?$params")
+      .setHeader(authHeader)
+      .execute[HttpResponse]
+      .map(enforceSoleTrader)
   }
 }
