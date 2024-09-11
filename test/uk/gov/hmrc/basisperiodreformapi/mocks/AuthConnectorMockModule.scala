@@ -18,7 +18,9 @@ package uk.gov.hmrc.basisperiodreformapi.mocks
 
 import scala.concurrent.Future
 
-import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
+import org.mockito.ArgumentMatchers.{eq => eqTo, _}
+import org.mockito.Mockito._
+import org.scalatestplus.mockito.MockitoSugar
 
 import uk.gov.hmrc.auth.core.AuthProvider.PrivilegedApplication
 import uk.gov.hmrc.auth.core.retrieve.EmptyRetrieval
@@ -26,19 +28,19 @@ import uk.gov.hmrc.auth.core.{AuthProviders, UnsupportedAuthProvider}
 
 import uk.gov.hmrc.basisperiodreformapi.connectors.AuthConnector
 
-trait AuthConnectorMockModule extends MockitoSugar with ArgumentMatchersSugar {
+trait AuthConnectorMockModule extends MockitoSugar {
 
   val mockAuthConnector = mock[AuthConnector]
 
   object Authorise {
 
     def asPrivilegedApplication() = {
-      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(*, *))
+      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(any(), any()))
         .thenReturn(Future.successful(None))
     }
 
     def asStandardApplication() = {
-      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(*, *))
+      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(any(), any()))
         .thenReturn(Future.failed(UnsupportedAuthProvider()))
     }
   }

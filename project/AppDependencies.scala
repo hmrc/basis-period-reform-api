@@ -5,7 +5,7 @@ object AppDependencies {
   def apply(): Seq[ModuleID] = compile ++ test
 
   private val bootstrapVersion    = "9.0.0"
-  private val commonDomainVersion = "0.10.0"
+  private val commonDomainVersion = "0.17.0-SNAPSHOT"
 
   val compile = Seq(
     "uk.gov.hmrc" %% "bootstrap-backend-play-30" % bootstrapVersion

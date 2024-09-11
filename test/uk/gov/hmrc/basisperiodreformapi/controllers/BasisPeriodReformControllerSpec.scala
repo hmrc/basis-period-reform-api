@@ -19,7 +19,8 @@ package uk.gov.hmrc.basisperiodreformapi.controllers
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.Source
 
-import org.mockito.scalatest.ResetMocksAfterEachTest
+import org.mockito.Mockito.reset
+import org.scalatest.BeforeAndAfterEach
 
 import play.api.http.Status
 import play.api.libs.json.{JsString, _}
@@ -30,8 +31,14 @@ import uk.gov.hmrc.apiplatform.modules.common.utils.HmrcSpec
 import uk.gov.hmrc.basisperiodreformapi.mocks._
 import uk.gov.hmrc.basisperiodreformapi.models._
 
-class BasisPeriodReformControllerSpec extends HmrcSpec with ResetMocksAfterEachTest with AuthConnectorMockModule with BasisPeriodReformConnectorMockModule
+class BasisPeriodReformControllerSpec extends HmrcSpec with BeforeAndAfterEach with AuthConnectorMockModule with BasisPeriodReformConnectorMockModule
     with AuditServiceMockModule {
+
+  override def beforeEach(): Unit = {
+    reset(mockBprConnector)
+    reset(mockAuditService)
+    reset(mockAuthConnector)
+  }
 
   private val controller = new BasisPeriodReformController(mockBprConnector, mockAuditService, mockAuthConnector, Helpers.stubControllerComponents())
 

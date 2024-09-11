@@ -18,7 +18,9 @@ package uk.gov.hmrc.basisperiodreformapi.controllers
 
 import scala.concurrent.Future
 
+import org.mockito.Mockito._
 import org.scalatest.BeforeAndAfterEach
+import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 
 import play.api.Application
@@ -31,7 +33,7 @@ import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.basisperiodreformapi.AsyncHmrcSpec
 import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
 
-class DocumentationControllerSpec extends AsyncHmrcSpec with GuiceOneAppPerSuite with BeforeAndAfterEach {
+class DocumentationControllerSpec extends AsyncHmrcSpec with MockitoSugar with GuiceOneAppPerSuite with BeforeAndAfterEach {
   implicit def mat: org.apache.pekko.stream.Materializer = app.injector.instanceOf[org.apache.pekko.stream.Materializer]
   val mockAppConfig: AppConfig                           = mock[AppConfig]
 

@@ -16,27 +16,29 @@
 
 package uk.gov.hmrc.basisperiodreformapi.mocks
 
-import org.mockito.captor.{ArgCaptor, Captor}
-import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
+import org.mockito.ArgumentCaptor
+import org.mockito.ArgumentMatchers._
+import org.mockito.Mockito._
+import org.scalatestplus.mockito.MockitoSugar
 
 import play.api.libs.json.JsObject
 
 import uk.gov.hmrc.basisperiodreformapi.services.AuditService
 
-trait AuditServiceMockModule extends MockitoSugar with ArgumentMatchersSugar {
+trait AuditServiceMockModule extends MockitoSugar {
 
   val mockAuditService = mock[AuditService]
 
   object Audit {
 
     def succeeds() = {
-      doNothing.when(mockAuditService).audit(*, *)(*)
+      doNothing.when(mockAuditService).audit(any(), any())(any())
     }
 
     def verifyCalledWith() = {
-      val capture: Captor[JsObject] = ArgCaptor[JsObject]
-      verify(mockAuditService).audit(*, capture)(*)
-      capture.value
+      val capture = ArgumentCaptor.forClass(classOf[JsObject])
+      verify(mockAuditService).audit(any(), capture.capture())(any())
+      capture.getValue
     }
   }
 }
