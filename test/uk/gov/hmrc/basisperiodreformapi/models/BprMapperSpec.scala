@@ -21,8 +21,9 @@ import scala.io.Source
 import org.scalatest.prop.TableDrivenPropertyChecks
 
 import play.api.libs.json._
-import uk.gov.hmrc.apiplatform.modules.common.utils.HmrcSpec
 import uk.gov.hmrc.http.HttpResponse
+
+import uk.gov.hmrc.basisperiodreformapi.HmrcSpec
 
 class BprMapperSpec extends HmrcSpec with TableDrivenPropertyChecks {
 

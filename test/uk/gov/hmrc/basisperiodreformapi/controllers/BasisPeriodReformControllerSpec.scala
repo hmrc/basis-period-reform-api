@@ -25,8 +25,8 @@ import play.api.http.Status
 import play.api.libs.json.{JsString, _}
 import play.api.test.Helpers._
 import play.api.test.{FakeRequest, Helpers}
-import uk.gov.hmrc.apiplatform.modules.common.utils.HmrcSpec
 
+import uk.gov.hmrc.basisperiodreformapi.HmrcSpec
 import uk.gov.hmrc.basisperiodreformapi.mocks._
 import uk.gov.hmrc.basisperiodreformapi.models._
 
