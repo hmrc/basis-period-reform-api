@@ -16,7 +16,13 @@
 
 package uk.gov.hmrc.basisperiodreformapi
 
+import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.{EitherValues, OptionValues}
+
 import play.api.test.{DefaultAwaitTimeout, FutureAwaits}
-import uk.gov.hmrc.apiplatform.modules.common.utils.HmrcSpec
+
+abstract class HmrcSpec extends AnyWordSpec with Matchers with OptionValues with EitherValues with MockitoSugar with ArgumentMatchersSugar
 
 abstract class AsyncHmrcSpec extends HmrcSpec with DefaultAwaitTimeout with FutureAwaits {}
