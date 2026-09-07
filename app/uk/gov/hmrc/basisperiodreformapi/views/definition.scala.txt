@@ -9,9 +9,7 @@
       {
         "version": "1.0",
         "status": "@apiStatus",
-        "access": {
-          "type": "PRIVATE"
-        },
+        "access": "INTERNAL",
         "endpointsEnabled": @{apiStatus != "ALPHA"}
       }
     ]
