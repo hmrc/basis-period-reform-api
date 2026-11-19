@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.basisperiodreformapi.models
 
-import play.api.libs.json.{Json, _}
+import play.api.libs.json.{Json, *}
 
 case class ReliefPartnership(
     sequenceNumber: Option[Double],

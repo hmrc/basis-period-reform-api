@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.basisperiodreformapi.models
 
-import play.api.libs.json._
+import play.api.libs.json.*
 
 case class SoleTrader(
     sequenceNumber: Option[Double],

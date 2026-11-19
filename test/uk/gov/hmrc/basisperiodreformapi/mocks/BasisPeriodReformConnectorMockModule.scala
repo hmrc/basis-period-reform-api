@@ -22,7 +22,7 @@ import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
 
 import uk.gov.hmrc.http.HttpException
 
-import uk.gov.hmrc.basisperiodreformapi.connectors._
+import uk.gov.hmrc.basisperiodreformapi.connectors.*
 import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, ReliefPartnershipResponse, SoleTraderResponse, TypedWrappedResponse}
 
 trait BasisPeriodReformConnectorMockModule extends MockitoSugar with ArgumentMatchersSugar {

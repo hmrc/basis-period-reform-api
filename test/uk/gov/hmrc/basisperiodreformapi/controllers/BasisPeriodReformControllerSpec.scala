@@ -22,13 +22,13 @@ import scala.io.Source
 import org.mockito.scalatest.ResetMocksAfterEachTest
 
 import play.api.http.Status
-import play.api.libs.json.{JsString, _}
-import play.api.test.Helpers._
+import play.api.libs.json.{JsString, *}
+import play.api.test.Helpers.*
 import play.api.test.{FakeRequest, Helpers}
 
 import uk.gov.hmrc.basisperiodreformapi.HmrcSpec
-import uk.gov.hmrc.basisperiodreformapi.mocks._
-import uk.gov.hmrc.basisperiodreformapi.models._
+import uk.gov.hmrc.basisperiodreformapi.mocks.*
+import uk.gov.hmrc.basisperiodreformapi.models.*
 
 class BasisPeriodReformControllerSpec extends HmrcSpec with ResetMocksAfterEachTest with AuthConnectorMockModule with BasisPeriodReformConnectorMockModule
     with AuditServiceMockModule {

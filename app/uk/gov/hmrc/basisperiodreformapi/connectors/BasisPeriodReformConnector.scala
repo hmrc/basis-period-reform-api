@@ -16,16 +16,16 @@
 
 package uk.gov.hmrc.basisperiodreformapi.connectors
 
-import javax.inject._
+import javax.inject.*
 import scala.concurrent.{ExecutionContext, Future}
 
 import play.api.http.HeaderNames.AUTHORIZATION
-import uk.gov.hmrc.http.HttpReads.Implicits._
+import uk.gov.hmrc.http.HttpReads.Implicits.*
 import uk.gov.hmrc.http.client.HttpClientV2
 import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse, StringContextOps}
 
 import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
-import uk.gov.hmrc.basisperiodreformapi.models._
+import uk.gov.hmrc.basisperiodreformapi.models.*
 
 @Singleton
 class BasisPeriodReformConnector @Inject() (http: HttpClientV2, appConfig: AppConfig)(implicit ec: ExecutionContext) extends BprMapper {

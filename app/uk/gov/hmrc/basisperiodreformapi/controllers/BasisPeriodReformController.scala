@@ -26,7 +26,7 @@ import uk.gov.hmrc.auth.core.{AuthProviders, AuthorisedFunctions}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import uk.gov.hmrc.basisperiodreformapi.connectors.{AuthConnector, BasisPeriodReformConnector}
-import uk.gov.hmrc.basisperiodreformapi.models._
+import uk.gov.hmrc.basisperiodreformapi.models.*
 import uk.gov.hmrc.basisperiodreformapi.services.AuditService
 
 @Singleton()
