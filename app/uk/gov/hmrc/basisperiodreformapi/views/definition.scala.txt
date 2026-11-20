@@ -1,4 +1,3 @@
-@import play.api.libs.json.Json
 @(apiStatus: String)
 {
   "api": {

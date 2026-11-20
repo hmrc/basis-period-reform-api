@@ -28,11 +28,11 @@ import uk.gov.hmrc.basisperiodreformapi.config.AppConfig
 import uk.gov.hmrc.basisperiodreformapi.models.*
 
 @Singleton
-class BasisPeriodReformConnector @Inject() (http: HttpClientV2, appConfig: AppConfig)(implicit ec: ExecutionContext) extends BprMapper {
+class BasisPeriodReformConnector @Inject() (http: HttpClientV2, appConfig: AppConfig)(using ec: ExecutionContext) extends BprMapper {
 
   lazy val authHeader: (String, String) = AUTHORIZATION -> s"Basic ${appConfig.bprAuthorizationToken}"
 
-  def getPartnershipDetails(utr: Option[String], partnershipNumber: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[ReliefPartnershipResponse]] = {
+  def getPartnershipDetails(utr: Option[String], partnershipNumber: Option[String])(using hc: HeaderCarrier): Future[TypedWrappedResponse[ReliefPartnershipResponse]] = {
     val params = Seq(utr.map(("utr", _)), partnershipNumber.map(("partnership_ref_number", _))).collect { case Some(param) => param }
 
     http.get(url"${appConfig.bprBaseUrl}/iv_overlap_relief_partnership?$params")
@@ -41,7 +41,7 @@ class BasisPeriodReformConnector @Inject() (http: HttpClientV2, appConfig: AppCo
       .map(enforcePartnership)
   }
 
-  def getSoleTraderDetails(utr: Option[String])(implicit hc: HeaderCarrier): Future[TypedWrappedResponse[SoleTraderResponse]] = {
+  def getSoleTraderDetails(utr: Option[String])(using hc: HeaderCarrier): Future[TypedWrappedResponse[SoleTraderResponse]] = {
     val params = utr.map(("utr", _)).fold(Seq[(String, String)]())(Seq(_))
 
     http.get(url"${appConfig.bprBaseUrl}/iv_overlap_relief_sole_trader?$params")

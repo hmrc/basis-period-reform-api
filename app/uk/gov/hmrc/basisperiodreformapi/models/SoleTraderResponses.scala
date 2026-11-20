@@ -46,7 +46,7 @@ object SoleTrader {
   import play.api.libs.functional.syntax._
   import play.api.libs.json._
 
-  implicit val soleTraderFormat: Format[SoleTrader] = (
+  given soleTraderFormat: Format[SoleTrader] = (
     (JsPath \ "seq_no").formatNullable[Double] and
       (JsPath \ "tie_breaker").formatNullable[Double] and
       (JsPath \ "name").formatNullable[String] and
@@ -102,9 +102,9 @@ case class SoleTraderAuditDetails(utr: Option[String], reliefPartnerships: Optio
 object SoleTraderAuditDetails {
   import play.api.libs.json._
   import play.api.libs.functional.syntax._
-  implicit val auditFormat: OFormat[SoleTrader] = Json.format[SoleTrader]
+  given auditFormat: OFormat[SoleTrader] = Json.format[SoleTrader]
 
-  implicit val format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
+  given format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
     (JsPath \ "reliefPartnerships").formatNullable[List[SoleTrader]])(
     SoleTraderAuditDetails.apply,
     unlift((s: SoleTraderAuditDetails) => Some(s.utr, s.reliefPartnerships))
@@ -113,5 +113,5 @@ object SoleTraderAuditDetails {
 case class SoleTraderResponse(name: Option[String], description: Option[String], elements: Option[List[SoleTrader]])
 
 object SoleTraderResponse {
-  implicit val format: OFormat[SoleTraderResponse] = Json.format[SoleTraderResponse]
+  given format: OFormat[SoleTraderResponse] = Json.format[SoleTraderResponse]
 }

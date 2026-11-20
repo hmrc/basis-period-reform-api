@@ -21,24 +21,24 @@ import play.api.libs.json.{Json, OFormat, Reads}
 case class ApiError(code: String, message: String)
 
 object ApiError {
-  implicit val format: OFormat[ApiError] = Json.format[ApiError]
+  given format: OFormat[ApiError] = Json.format[ApiError]
 }
 case class ApiErrors(errors: List[ApiError])
 
 object ApiErrors {
-  implicit val format: OFormat[ApiErrors] = Json.format[ApiErrors]
+  given format: OFormat[ApiErrors] = Json.format[ApiErrors]
 }
 case class TypedWrappedResponse[T](status: Int, response: Either[ApiErrors, T])
 
 case class DenodoError(code: Option[Int], message: Option[String])
 
 object DenodoError {
-  implicit val errorFormat: Reads[DenodoError] = Json.reads[DenodoError]
+  given errorFormat: Reads[DenodoError] = Json.reads[DenodoError]
 }
 case class DenodoErrors(errors: List[DenodoError])
 
 object DenodoErrors {
   import play.api.libs.json._
 
-  implicit val reads: Reads[DenodoErrors] = (JsPath \ "__errors__").read[List[DenodoError]].map(DenodoErrors(_))
+  given reads: Reads[DenodoErrors] = (JsPath \ "__errors__").read[List[DenodoError]].map(DenodoErrors(_))
 }

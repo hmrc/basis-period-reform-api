@@ -40,7 +40,7 @@ object ReliefPartnership {
   import play.api.libs.json._
   import play.api.libs.functional.syntax._
 
-  implicit val reliefFormat: Format[ReliefPartnership] = (
+  given reliefFormat: Format[ReliefPartnership] = (
     (JsPath \ "seq_no").formatNullable[Double] and
       (JsPath \ "tie_breaker").formatNullable[Double] and
       (JsPath \ "name").formatNullable[String] and
@@ -85,9 +85,9 @@ case class PartnershipAuditDetails(utr: Option[String], partnershipNumber: Optio
 object PartnershipAuditDetails {
   import play.api.libs.json._
   import play.api.libs.functional.syntax._
-  implicit val auditFormat: OFormat[ReliefPartnership] = Json.format[ReliefPartnership]
+  given auditFormat: OFormat[ReliefPartnership] = Json.format[ReliefPartnership]
 
-  implicit val format: OFormat[PartnershipAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
+  given format: OFormat[PartnershipAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
     (JsPath \ "partnershipNumber").formatNullable[String] and
     (JsPath \ "reliefPartnerships").formatNullable[List[ReliefPartnership]])(
     PartnershipAuditDetails.apply,
@@ -97,5 +97,5 @@ object PartnershipAuditDetails {
 case class ReliefPartnershipResponse(name: Option[String], description: Option[String], elements: Option[List[ReliefPartnership]])
 
 object ReliefPartnershipResponse {
-  implicit val format: OFormat[ReliefPartnershipResponse] = Json.format[ReliefPartnershipResponse]
+  given format: OFormat[ReliefPartnershipResponse] = Json.format[ReliefPartnershipResponse]
 }
