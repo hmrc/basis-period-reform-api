@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.basisperiodreformapi.controllers
+package uk.gov.hmrc.basisperiodreformapi.controllers.documentation
 
 import scala.concurrent.Future
 
@@ -25,7 +25,7 @@ import play.api.Application
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.mvc.Result
-import play.api.test.Helpers.{route, _}
+import play.api.test.Helpers.{route, *}
 import play.api.test.{FakeRequest, Helpers}
 
 import uk.gov.hmrc.basisperiodreformapi.AsyncHmrcSpec
@@ -70,7 +70,7 @@ class DocumentationControllerSpec extends AsyncHmrcSpec with GuiceOneAppPerSuite
   }
 
   def doGet(uri: String, headers: Map[String, String]): Future[Result] = {
-    val fakeRequest = FakeRequest(GET, uri).withHeaders(headers.toSeq: _*)
+    val fakeRequest = FakeRequest(GET, uri).withHeaders(headers.toSeq*)
     route(app, fakeRequest).get
   }
 }

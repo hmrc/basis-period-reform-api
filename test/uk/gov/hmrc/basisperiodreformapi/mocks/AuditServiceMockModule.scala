@@ -30,12 +30,12 @@ trait AuditServiceMockModule extends MockitoSugar with ArgumentMatchersSugar {
   object Audit {
 
     def succeeds() = {
-      doNothing.when(mockAuditService).audit(*, *)(*)
+      doNothing.when(mockAuditService).audit(*, *)(using *)
     }
 
     def verifyCalledWith() = {
       val capture: Captor[JsObject] = ArgCaptor[JsObject]
-      verify(mockAuditService).audit(*, capture)(*)
+      verify(mockAuditService).audit(*, capture)(using *)
       capture.value
     }
   }

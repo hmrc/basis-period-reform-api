@@ -24,7 +24,7 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 
 @Singleton
-class AuditService @Inject() (val auditConnector: AuditConnector)(implicit val ec: ExecutionContext) {
+class AuditService @Inject() (val auditConnector: AuditConnector)(using val ec: ExecutionContext) {
   import AuditService._
 
   def audit(auditType: AuditType, obj: JsObject)(implicit hc: HeaderCarrier): Unit =

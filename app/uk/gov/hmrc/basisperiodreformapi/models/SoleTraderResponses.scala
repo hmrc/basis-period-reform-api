@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.basisperiodreformapi.models
 
-import play.api.libs.json._
+import play.api.libs.json.*
 
 case class SoleTrader(
     sequenceNumber: Option[Double],
@@ -46,7 +46,7 @@ object SoleTrader {
   import play.api.libs.functional.syntax._
   import play.api.libs.json._
 
-  implicit val soleTraderFormat: Format[SoleTrader] = (
+  given soleTraderFormat: Format[SoleTrader] = (
     (JsPath \ "seq_no").formatNullable[Double] and
       (JsPath \ "tie_breaker").formatNullable[Double] and
       (JsPath \ "name").formatNullable[String] and
@@ -68,24 +68,50 @@ object SoleTrader {
       (JsPath \ "net_business_profit").formatNullable[Double] and
       (JsPath \ "net_business_loss").formatNullable[Double] and
       (JsPath \ "tax_year").formatNullable[Int]
-  )(SoleTrader.apply, unlift(SoleTrader.unapply))
-
+  )(
+    SoleTrader.apply,
+    unlift((s: SoleTrader) =>
+      Some(
+        s.sequenceNumber,
+        s.tieBreaker,
+        s.name,
+        s.utr,
+        s.nino,
+        s.sourceNumber,
+        s.nameOfBusiness,
+        s.descriptionOfBusiness,
+        s.dateOfCommencement,
+        s.commencementSig,
+        s.dateCeased,
+        s.accountingPeriodStart,
+        s.accountingPeriodEnd,
+        s.basisPeriodStart,
+        s.basisPeriodEnd,
+        s.accountingDateChanged,
+        s.overlapReliefUsedThisYear,
+        s.overlapProfitCarriedForward,
+        s.netBusinessProfit,
+        s.netBusinessLoss,
+        s.taxYear
+      )
+    )
+  )
 }
 case class SoleTraderAuditDetails(utr: Option[String], reliefPartnerships: Option[List[SoleTrader]])
 
 object SoleTraderAuditDetails {
   import play.api.libs.json._
   import play.api.libs.functional.syntax._
-  implicit val auditFormat: OFormat[SoleTrader] = Json.format[SoleTrader]
+  given auditFormat: OFormat[SoleTrader] = Json.format[SoleTrader]
 
-  implicit val format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
+  given format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
     (JsPath \ "reliefPartnerships").formatNullable[List[SoleTrader]])(
     SoleTraderAuditDetails.apply,
-    unlift(SoleTraderAuditDetails.unapply)
+    unlift((s: SoleTraderAuditDetails) => Some(s.utr, s.reliefPartnerships))
   )
 }
 case class SoleTraderResponse(name: Option[String], description: Option[String], elements: Option[List[SoleTrader]])
 
 object SoleTraderResponse {
-  implicit val format: OFormat[SoleTraderResponse] = Json.format[SoleTraderResponse]
+  given format: OFormat[SoleTraderResponse] = Json.format[SoleTraderResponse]
 }

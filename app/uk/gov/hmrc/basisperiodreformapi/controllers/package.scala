@@ -21,7 +21,7 @@ import scala.util.control.NonFatal
 import play.api.Logger
 import play.api.libs.json.Json
 import play.api.mvc.Result
-import play.api.mvc.Results._
+import play.api.mvc.Results.*
 import uk.gov.hmrc.auth.core.UnsupportedAuthProvider
 
 package object controllers {

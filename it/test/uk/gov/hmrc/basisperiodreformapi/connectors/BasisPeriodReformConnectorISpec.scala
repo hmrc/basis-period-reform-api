@@ -32,13 +32,13 @@ import uk.gov.hmrc.basisperiodreformapi.models.{ApiErrors, ReliefPartnershipResp
 
 class BasisPeriodReformConnectorISpec extends AsyncHmrcSpec with GuiceOneAppPerSuite with WireMockSupport {
 
-  val stubConfig: Configuration  = Configuration(
+  val stubConfig: Configuration = Configuration(
     "microservice.services.bpr.port"   -> wireMockPort,
     "microservice.services.bpr.prefix" -> "",
     "metrics.enabled"                  -> false,
     "auditing.enabled"                 -> false
   )
-  implicit val hc: HeaderCarrier = HeaderCarrier()
+  given hc: HeaderCarrier       = HeaderCarrier()
 
   override def fakeApplication(): Application = GuiceApplicationBuilder()
     .configure(stubConfig)

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.basisperiodreformapi.controllers
+package uk.gov.hmrc.basisperiodreformapi.controllers.documentation
 
 import javax.inject.{Inject, Singleton}
 
