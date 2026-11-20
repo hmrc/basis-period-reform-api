@@ -33,12 +33,12 @@ trait AuthConnectorMockModule extends MockitoSugar with ArgumentMatchersSugar {
   object Authorise {
 
     def asPrivilegedApplication() = {
-      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(*, *))
+      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(using *, *))
         .thenReturn(Future.successful(None))
     }
 
     def asStandardApplication() = {
-      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(*, *))
+      when(mockAuthConnector.authorise(eqTo(AuthProviders(PrivilegedApplication)), eqTo(EmptyRetrieval))(using *, *))
         .thenReturn(Future.failed(UnsupportedAuthProvider()))
     }
   }

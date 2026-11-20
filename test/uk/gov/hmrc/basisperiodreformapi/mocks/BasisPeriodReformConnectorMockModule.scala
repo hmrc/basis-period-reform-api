@@ -31,46 +31,46 @@ trait BasisPeriodReformConnectorMockModule extends MockitoSugar with ArgumentMat
   object GetPartnershipDetails {
 
     def returns(status: Int, response: ReliefPartnershipResponse): Unit = {
-      when(mockBprConnector.getPartnershipDetails(*, *)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
+      when(mockBprConnector.getPartnershipDetails(*, *)(using *)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
     }
 
     def returnsError(status: Int, response: ApiErrors): Unit = {
-      when(mockBprConnector.getPartnershipDetails(*, *)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
+      when(mockBprConnector.getPartnershipDetails(*, *)(using *)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
     }
 
     def returnsException(): Unit = {
-      when(mockBprConnector.getPartnershipDetails(*, *)(*)).thenReturn(Future.failed(new HttpException("error", 500)))
+      when(mockBprConnector.getPartnershipDetails(*, *)(using *)).thenReturn(Future.failed(new HttpException("error", 500)))
     }
 
     def verifyCalledWith(utr: Option[String], partnershipRef: Option[String]): Unit = {
-      verify(mockBprConnector).getPartnershipDetails(eqTo(utr), eqTo(partnershipRef))(*)
+      verify(mockBprConnector).getPartnershipDetails(eqTo(utr), eqTo(partnershipRef))(using *)
     }
 
     def verifyNotCalled(): Unit = {
-      verify(mockBprConnector, never).getPartnershipDetails(*, *)(*)
+      verify(mockBprConnector, never).getPartnershipDetails(*, *)(using *)
     }
   }
 
   object GetSoleTrader {
 
     def returns(status: Int, response: SoleTraderResponse): Unit = {
-      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
+      when(mockBprConnector.getSoleTraderDetails(*)(using *)).thenReturn(Future.successful(TypedWrappedResponse(status, Right(response))))
     }
 
     def returnsError(status: Int, response: ApiErrors): Unit = {
-      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
+      when(mockBprConnector.getSoleTraderDetails(*)(using *)).thenReturn(Future.successful(TypedWrappedResponse(status, Left(response))))
     }
 
     def returnsException(): Unit = {
-      when(mockBprConnector.getSoleTraderDetails(*)(*)).thenReturn(Future.failed(new HttpException("error", 500)))
+      when(mockBprConnector.getSoleTraderDetails(*)(using *)).thenReturn(Future.failed(new HttpException("error", 500)))
     }
 
     def verifyCalledWith(utr: Option[String]): Unit = {
-      verify(mockBprConnector).getSoleTraderDetails(eqTo(utr))(*)
+      verify(mockBprConnector).getSoleTraderDetails(eqTo(utr))(using *)
     }
 
     def verifyNotCalled(): Unit = {
-      verify(mockBprConnector, never).getSoleTraderDetails(*)(*)
+      verify(mockBprConnector, never).getSoleTraderDetails(*)(using *)
     }
   }
 

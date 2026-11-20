@@ -56,7 +56,28 @@ object ReliefPartnership {
       (JsPath \ "overlap_relief_used_this_year").formatNullable[Double] and
       (JsPath \ "overlap_profit_carried_forward").formatNullable[Double] and
       (JsPath \ "tax_year").formatNullable[Int]
-  )(ReliefPartnership.apply, unlift(ReliefPartnership.unapply))
+  )(
+    ReliefPartnership.apply,
+    unlift((r: ReliefPartnership) =>
+      Some(
+        r.sequenceNumber,
+        r.tieBreaker,
+        r.name,
+        r.utr,
+        r.nino,
+        r.partnershipRefNumber,
+        r.dateYouBecamePartner,
+        r.dateYouLeftPartnership,
+        r.basisPeriodStart,
+        r.basisPeriodEnd,
+        r.shareOfProfitOrLoss,
+        r.netBusinessLossPartners,
+        r.overlapReliefUsedThisYear,
+        r.overlapProfitCarriedForward,
+        r.taxYear
+      )
+    )
+  )
 
 }
 case class PartnershipAuditDetails(utr: Option[String], partnershipNumber: Option[String], reliefPartnerships: Option[List[ReliefPartnership]])
@@ -70,7 +91,7 @@ object PartnershipAuditDetails {
     (JsPath \ "partnershipNumber").formatNullable[String] and
     (JsPath \ "reliefPartnerships").formatNullable[List[ReliefPartnership]])(
     PartnershipAuditDetails.apply,
-    unlift(PartnershipAuditDetails.unapply)
+    unlift((p: PartnershipAuditDetails) => Some(p.utr, p.partnershipNumber, p.reliefPartnerships))
   )
 }
 case class ReliefPartnershipResponse(name: Option[String], description: Option[String], elements: Option[List[ReliefPartnership]])

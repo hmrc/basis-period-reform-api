@@ -68,8 +68,34 @@ object SoleTrader {
       (JsPath \ "net_business_profit").formatNullable[Double] and
       (JsPath \ "net_business_loss").formatNullable[Double] and
       (JsPath \ "tax_year").formatNullable[Int]
-  )(SoleTrader.apply, unlift(SoleTrader.unapply))
-
+  )(
+    SoleTrader.apply,
+    unlift((s: SoleTrader) =>
+      Some(
+        s.sequenceNumber,
+        s.tieBreaker,
+        s.name,
+        s.utr,
+        s.nino,
+        s.sourceNumber,
+        s.nameOfBusiness,
+        s.descriptionOfBusiness,
+        s.dateOfCommencement,
+        s.commencementSig,
+        s.dateCeased,
+        s.accountingPeriodStart,
+        s.accountingPeriodEnd,
+        s.basisPeriodStart,
+        s.basisPeriodEnd,
+        s.accountingDateChanged,
+        s.overlapReliefUsedThisYear,
+        s.overlapProfitCarriedForward,
+        s.netBusinessProfit,
+        s.netBusinessLoss,
+        s.taxYear
+      )
+    )
+  )
 }
 case class SoleTraderAuditDetails(utr: Option[String], reliefPartnerships: Option[List[SoleTrader]])
 
@@ -81,7 +107,7 @@ object SoleTraderAuditDetails {
   implicit val format: OFormat[SoleTraderAuditDetails] = ((JsPath \ "utr").formatNullable[String] and
     (JsPath \ "reliefPartnerships").formatNullable[List[SoleTrader]])(
     SoleTraderAuditDetails.apply,
-    unlift(SoleTraderAuditDetails.unapply)
+    unlift((s: SoleTraderAuditDetails) => Some(s.utr, s.reliefPartnerships))
   )
 }
 case class SoleTraderResponse(name: Option[String], description: Option[String], elements: Option[List[SoleTrader]])
